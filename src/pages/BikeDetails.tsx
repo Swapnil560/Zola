@@ -10,6 +10,27 @@ import { useToggle } from '../hooks/useToggle'
 export default function BikeDetails() {
   const mobileMenu = useToggle()
   const [currentStep, setCurrentStep] = useState(1)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [review1Rating, setReview1Rating] = useState(5)
+  const [review2Rating, setReview2Rating] = useState(4)
+  const [review3Rating, setReview3Rating] = useState(5)
+  
+  const bikeImages = [
+    '/images/classic 350.png',
+    '/images/122.png',
+    '/images/133.png', 
+    '/images/144.png',
+    '/images/blackc.png',
+    '/images/whitec.png'
+  ]
+  
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % bikeImages.length)
+  }
+  
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + bikeImages.length) % bikeImages.length)
+  }
 
 
 
@@ -32,54 +53,137 @@ export default function BikeDetails() {
 
       <main style={{paddingTop: '16px'}}>
         <section className="max-w-6xl mx-auto p-4 sm:p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div>
-              <img src="/images/classic 350.png" alt="Royal Enfield Classic 350" className="w-full h-96 object-cover rounded-lg" />
+          <div className="flex flex-col lg:flex-row gap-8 lg:items-end">
+            {/* Left Side - Images */}
+            <div className="lg:w-1/2 flex flex-col">
+              {/* Main Image with Navigation Arrows */}
+              <div className="relative mb-4">
+                <img 
+                  src={bikeImages[currentImageIndex]} 
+                  alt="Royal Enfield Classic 350" 
+                  className="w-full h-96 object-cover rounded-lg" 
+                />
+                
+                {/* Left Arrow */}
+                <button 
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full transition-all duration-200"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                {/* Right Arrow */}
+                <button 
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full transition-all duration-200"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                
+                {/* Image Counter */}
+                <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                  {currentImageIndex + 1} / {bikeImages.length}
+                </div>
+              </div>
+              
+              {/* Thumbnail Gallery */}
+              <div className="flex gap-2 overflow-x-auto">
+                {bikeImages.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                      currentImageIndex === index 
+                        ? 'border-blue-500 ring-2 ring-blue-200' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <img 
+                      src={image} 
+                      alt={`Bike view ${index + 1}`} 
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
             
-            <div className="flex flex-col justify-between lg:h-96">
-              <div>
-                <h1 className="text-3xl font-bold text-black mb-2">Royal Enfield Classic 350</h1>
-                <p className="text-gray-600 mb-4">Stylish, reliable city ride with vintage charm</p>
-                
-                <div className="flex items-center mb-4">
-                  <div className="flex text-yellow-400 mr-2">
-                    {[...Array(4)].map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                    <span className="text-gray-300">★</span>
-                  </div>
-                  <span className="text-gray-600">(124 reviews)</span>
+            {/* Right Side - Content */}
+            <div className="lg:w-1/2 flex flex-col">
+              <h1 className="text-3xl font-bold text-black mb-2">Royal Enfield Classic 350</h1>
+              <p className="text-gray-600 mb-4">Stylish, reliable city ride with vintage charm</p>
+              
+              <div className="flex items-center mb-4">
+                <div className="flex text-yellow-400 mr-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i}>★</span>
+                  ))}
                 </div>
+                <span className="text-gray-600">(124 reviews)</span>
+              </div>
 
-                <div className="text-3xl font-bold mb-6" style={{color: '#2D2D2D'}}>₹4,500 / per day</div>
+              <div className="text-4xl font-bold mb-6" style={{color: '#2D2D2D'}}>₹4,500 / per day</div>
 
-                <div className="flex-1 mb-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:h-full">
-                    <div className="flex items-center justify-center px-3 py-3 lg:px-4 lg:py-4 rounded-lg text-xs sm:text-sm bg-gray-100 text-gray-700 lg:h-full">
-                      <span className="mr-2 text-base lg:text-lg">🛡️</span>
-                      <span>Free helmet included</span>
-                    </div>
-                    <div className="flex items-center justify-center px-3 py-3 lg:px-4 lg:py-4 rounded-lg text-xs sm:text-sm bg-gray-100 text-gray-700 lg:h-full">
-                      <span className="mr-2 text-base lg:text-lg">🛡️</span>
-                      <span>Fully insured</span>
-                    </div>
-                    <div className="flex items-center justify-center px-3 py-3 lg:px-4 lg:py-4 rounded-lg text-xs sm:text-sm bg-gray-100 text-gray-700 lg:h-full">
-                      <span className="mr-2 text-base lg:text-lg">✈️</span>
-                      <span>Airport pickup</span>
-                    </div>
-                  </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700">
+                  <span className="mr-3 text-lg">🛡️</span>
+                  <span>Free helmet included</span>
+                </div>
+                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700">
+                  <span className="mr-3 text-lg">🛡️</span>
+                  <span>Fully insured</span>
+                </div>
+                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700">
+                  <span className="mr-3 text-lg">✈️</span>
+                  <span>Airport pickup</span>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <button className="flex-1 text-white py-3 rounded-lg hover:scale-105 transition-all duration-200 font-medium" style={{backgroundColor: '#00473E'}}>
-                  Book Now
-                </button>
-                <button className="flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
-                  View Details
-                </button>
+              <button className="w-full text-white py-3 rounded-lg hover:scale-105 transition-all duration-200 font-medium" style={{backgroundColor: '#00473E'}}>
+                Book Now
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Specifications Section */}
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8">
+          <h2 className="text-2xl font-bold text-black mb-6 text-center">Specifications</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Mileage */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+              <div className="text-6xl mb-3 text-blue-500">⛽</div>
+              <h3 className="text-xl font-bold text-black mb-1">54 kmpl</h3>
+              <p className="text-gray-600 text-sm">Mileage</p>
+            </div>
+            
+            {/* Seating */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <img src="/images/pp.png" alt="Seating" className="w-12 h-12" style={{filter: 'hue-rotate(200deg) saturate(2)'}} />
               </div>
+              <h3 className="text-xl font-bold text-black mb-1">2 persons</h3>
+              <p className="text-gray-600 text-sm">Seating</p>
+            </div>
+            
+            {/* Engine */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+              <div className="text-6xl mb-3 text-blue-500">🔧</div>
+              <h3 className="text-xl font-bold text-black mb-1">125cc</h3>
+              <p className="text-gray-600 text-sm">Engine</p>
+            </div>
+            
+            {/* Top Speed */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <img src="/images/whitec.png" alt="Speed" className="w-12 h-12" style={{filter: 'hue-rotate(200deg) saturate(2)'}} />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-1">85 km/h</h3>
+              <p className="text-gray-600 text-sm">Top Speed</p>
             </div>
           </div>
         </section>
@@ -492,6 +596,94 @@ export default function BikeDetails() {
         </section>
 
         <ContactSection />
+        
+        {/* Customer Reviews Section */}
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8">
+          <h2 className="text-2xl font-bold text-black mb-6 text-center">Customer Reviews</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Review 1 */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  R
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Rahul Sharma</h4>
+                  <p className="text-gray-500 text-sm">Delhi</p>
+                </div>
+              </div>
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <button 
+                    key={i} 
+                    onClick={() => setReview1Rating(i + 1)}
+                    className={`text-lg transition-colors ${
+                      i < review1Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
+                    }`}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+              <p className="text-gray-700">"Excellent service! The bike was in perfect condition and the staff was very helpful. Highly recommend for anyone visiting Meghalaya."</p>
+            </div>
+            
+            {/* Review 2 */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  P
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Priya Patel</h4>
+                  <p className="text-gray-500 text-sm">Mumbai</p>
+                </div>
+              </div>
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <button 
+                    key={i} 
+                    onClick={() => setReview2Rating(i + 1)}
+                    className={`text-lg transition-colors ${
+                      i < review2Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
+                    }`}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+              <p className="text-gray-700">"Great experience overall. The Royal Enfield was smooth and reliable throughout my trip. Will definitely book again!"</p>
+            </div>
+            
+            {/* Review 3 */}
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  A
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Arjun Singh</h4>
+                  <p className="text-gray-500 text-sm">Bangalore</p>
+                </div>
+              </div>
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <button 
+                    key={i} 
+                    onClick={() => setReview3Rating(i + 1)}
+                    className={`text-lg transition-colors ${
+                      i < review3Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
+                    }`}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+              <p className="text-gray-700">"Amazing bike rental service! Clean bikes, fair pricing, and excellent customer support. Made my Shillong trip memorable."</p>
+            </div>
+          </div>
+        </section>
+        
         <FAQSection faqs={bikeDetailsFAQs} />
 
       </main>
