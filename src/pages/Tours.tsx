@@ -44,7 +44,7 @@ export default function Tours() {
               </div>
             </div>
             <div className="flex gap-2 flex-shrink-0">
-              <button className="bg-green-600 text-white px-2 sm:px-4 py-1.5 rounded hover:bg-green-700 text-xs sm:text-base flex items-center">
+              <button className="text-white px-2 sm:px-4 py-1.5 rounded hover:opacity-80 text-xs sm:text-base flex items-center" style={{backgroundColor: '#00473E'}}>
                 <img src="/images/share.png" alt="Share" className="w-4 h-4 mr-1" />Share
               </button>
               <button className="bg-gray-200 text-gray-700 px-2 sm:px-4 py-1.5 rounded hover:bg-gray-300 transition-colors text-xs sm:text-base flex items-center">

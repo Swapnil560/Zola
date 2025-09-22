@@ -53,9 +53,9 @@ export default function BikeDetails() {
 
       <main style={{paddingTop: '16px'}}>
         <section className="max-w-6xl mx-auto p-4 sm:p-6">
-          <div className="flex flex-col lg:flex-row gap-8 lg:items-end">
+          <div className="flex flex-col lg:flex-row gap-8 lg:items-stretch">
             {/* Left Side - Images */}
-            <div className="lg:w-1/2 flex flex-col">
+            <div className="lg:w-1/2 flex flex-col h-full">
               {/* Main Image with Navigation Arrows */}
               <div className="relative mb-4">
                 <img 
@@ -113,11 +113,11 @@ export default function BikeDetails() {
             </div>
             
             {/* Right Side - Content */}
-            <div className="lg:w-1/2 flex flex-col">
-              <h1 className="text-3xl font-bold text-black mb-2">Royal Enfield Classic 350</h1>
-              <p className="text-gray-600 mb-4">Stylish, reliable city ride with vintage charm</p>
+            <div className="lg:w-1/2 flex flex-col justify-between min-h-full">
+              <h1 className="text-3xl font-bold text-black mb-4">Royal Enfield Classic 350</h1>
+              <p className="text-gray-600 mb-6">Stylish, reliable city ride with vintage charm</p>
               
-              <div className="flex items-center mb-4">
+              <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400 mr-2">
                   {[...Array(5)].map((_, i) => (
                     <span key={i}>★</span>
@@ -126,20 +126,20 @@ export default function BikeDetails() {
                 <span className="text-gray-600">(124 reviews)</span>
               </div>
 
-              <div className="text-4xl font-bold mb-6" style={{color: '#2D2D2D'}}>₹4,500 / per day</div>
+              <div className="text-4xl font-bold mb-8" style={{color: '#2D2D2D'}}>₹4,500 / per day</div>
 
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-300 text-gray-700">
-                  <span className="mr-3 text-lg">🛡️</span>
-                  <span>Free helmet included</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 flex-grow">
+                <div className="flex items-center px-4 py-4 rounded-lg bg-gray-300 text-gray-700">
+                  <span className="mr-3 text-3xl">🛡️</span>
+                  <span className="text-sm font-medium">Free helmet included</span>
                 </div>
-                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-300 text-gray-700">
-                  <span className="mr-3 text-lg">🛡️</span>
-                  <span>Fully insured</span>
+                <div className="flex items-center px-4 py-4 rounded-lg bg-gray-300 text-gray-700">
+                  <span className="mr-3 text-3xl">🛡️</span>
+                  <span className="text-sm font-medium">Fully insured</span>
                 </div>
-                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-300 text-gray-700">
-                  <span className="mr-3 text-lg">✈️</span>
-                  <span>Airport pickup</span>
+                <div className="flex items-center px-4 py-4 rounded-lg bg-gray-300 text-gray-700">
+                  <span className="mr-3 text-3xl">✈️</span>
+                  <span className="text-sm font-medium">Airport pickup</span>
                 </div>
               </div>
 
@@ -156,24 +156,26 @@ export default function BikeDetails() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Mileage */}
             <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
-              <div className="text-6xl mb-3 text-blue-500">⛽</div>
+              <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <img src="/images/bp.png" alt="Mileage" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
+              </div>
               <h3 className="text-xl font-bold text-black mb-1">54 kmpl</h3>
               <p className="text-gray-600 text-sm">Mileage</p>
             </div>
             
             {/* Seating */}
             <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
-              <div className="text-6xl mb-3 text-blue-500">👥</div>
+              <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <img src="/images/bppl.png" alt="Seating" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
+              </div>
               <h3 className="text-xl font-bold text-black mb-1">2 persons</h3>
               <p className="text-gray-600 text-sm">Seating</p>
             </div>
             
             {/* Engine */}
             <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
-              <div className="text-6xl mb-3">
-                <svg className="w-16 h-16 mx-auto text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
-                </svg>
+              <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <img src="/images/br.png" alt="Engine" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
               </div>
               <h3 className="text-xl font-bold text-black mb-1">125cc</h3>
               <p className="text-gray-600 text-sm">Engine</p>
@@ -181,10 +183,8 @@ export default function BikeDetails() {
             
             {/* Top Speed */}
             <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
-              <div className="mb-3">
-                <svg className="w-16 h-16 mx-auto text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z"/>
-                </svg>
+              <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <img src="/images/bc.png" alt="Top Speed" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
               </div>
               <h3 className="text-xl font-bold text-black mb-1">85 km/h</h3>
               <p className="text-gray-600 text-sm">Top Speed</p>
@@ -275,7 +275,8 @@ export default function BikeDetails() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-between">
                   <button 
                     onClick={() => setCurrentStep(1)}
-                    className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 disabled:opacity-50"
+                    className="px-6 py-3 text-white rounded-xl font-semibold hover:opacity-80 transition-all duration-300 disabled:opacity-50"
+                    style={{backgroundColor: '#003329'}}
                     disabled
                   >
                     Previous
@@ -340,7 +341,8 @@ export default function BikeDetails() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-between">
                   <button 
                     onClick={() => setCurrentStep(1)}
-                    className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300"
+                    className="px-6 py-3 text-white rounded-xl font-semibold hover:opacity-80 transition-all duration-300"
+                    style={{backgroundColor: '#003329'}}
                   >
                     ← Previous
                   </button>
@@ -447,7 +449,8 @@ export default function BikeDetails() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-between">
                   <button 
                     onClick={() => setCurrentStep(2)}
-                    className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300"
+                    className="px-6 py-3 text-white rounded-xl font-semibold hover:opacity-80 transition-all duration-300"
+                    style={{backgroundColor: '#003329'}}
                   >
                     ← Previous
                   </button>
@@ -531,7 +534,8 @@ export default function BikeDetails() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-between">
                   <button 
                     onClick={() => setCurrentStep(3)}
-                    className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300"
+                    className="px-6 py-3 text-white rounded-xl font-semibold hover:opacity-80 transition-all duration-300"
+                    style={{backgroundColor: '#003329'}}
                   >
                     ← Previous
                   </button>
@@ -586,7 +590,8 @@ export default function BikeDetails() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-between">
                   <button 
                     onClick={() => setCurrentStep(4)}
-                    className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300"
+                    className="px-6 py-3 text-white rounded-xl font-semibold hover:opacity-80 transition-all duration-300"
+                    style={{backgroundColor: '#003329'}}
                   >
                     ← Previous
                   </button>

@@ -43,29 +43,35 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/loc.png" alt="Location" className="w-4 h-4 mr-1 object-contain" /> Pickup</label>
-                      <select className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-400 text-sm">
-                        <option>Select Pickup Location</option>
-                      </select>
+                      <input list="pickup-locations" placeholder="Select Pickup Location" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
+                      <datalist id="pickup-locations">
+                        <option value="Guwahati Airport" />
+                        <option value="Guwahati Railway Station" />
+                        <option value="Paltan Bazaar" />
+                        <option value="Fancy Bazaar" />
+                        <option value="Zoo Road" />
+                      </datalist>
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/loc.png" alt="Location" className="w-4 h-4 mr-1 object-contain" /> Drop-off</label>
-                      <select className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-400 text-sm">
-                        <option>Select Drop-off Location</option>
-                      </select>
+                      <input list="dropoff-locations" placeholder="Select Drop-off Location" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
+                      <datalist id="dropoff-locations">
+                        <option value="Guwahati Airport" />
+                        <option value="Guwahati Railway Station" />
+                        <option value="Paltan Bazaar" />
+                        <option value="Fancy Bazaar" />
+                        <option value="Zoo Road" />
+                      </datalist>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Pickup Date and Time</label>
-                      <select className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-400 text-sm">
-                        <option>Select Pickup Date and Time</option>
-                      </select>
+                      <input type="datetime-local" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Drop-off Date and Time</label>
-                      <select className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-400 text-sm">
-                        <option>Select Drop-off Date and Time</option>
-                      </select>
+                      <input type="datetime-local" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
                     </div>
                   </div>
                 </div>
