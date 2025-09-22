@@ -19,9 +19,9 @@ const FAQSection = ({ categories, faqs, title = "Frequently Asked Questions", su
 
   return (
     <section className="py-20 bg-gray-200" id="faq">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-32">
+      <div className="max-w-5xl mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#2D2D2D'}}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{color: '#2D2D2D'}}>
             {title}
           </h2>
           <p className="text-gray-600 text-lg">
