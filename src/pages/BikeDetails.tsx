@@ -114,7 +114,7 @@ export default function BikeDetails() {
             
             {/* Right Side - Content */}
             <div className="lg:w-1/2 flex flex-col">
-              <h1 className="text-3xl font-bold text-blue-600 mb-2">Royal Enfield Classic 350</h1>
+              <h1 className="text-3xl font-bold text-black mb-2">Royal Enfield Classic 350</h1>
               <p className="text-gray-600 mb-4">Stylish, reliable city ride with vintage charm</p>
               
               <div className="flex items-center mb-4">
