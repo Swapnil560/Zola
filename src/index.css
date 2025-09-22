@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbars */
+html {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
