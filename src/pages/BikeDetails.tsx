@@ -129,15 +129,15 @@ export default function BikeDetails() {
               <div className="text-4xl font-bold mb-6" style={{color: '#2D2D2D'}}>₹4,500 / per day</div>
 
               <div className="space-y-3 mb-6">
-                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-300 text-gray-700">
+                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700">
                   <span className="mr-3 text-lg">🛡️</span>
                   <span>Free helmet included</span>
                 </div>
-                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-300 text-gray-700">
+                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700">
                   <span className="mr-3 text-lg">🛡️</span>
                   <span>Fully insured</span>
                 </div>
-                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-300 text-gray-700">
+                <div className="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700">
                   <span className="mr-3 text-lg">✈️</span>
                   <span>Airport pickup</span>
                 </div>
@@ -155,14 +155,14 @@ export default function BikeDetails() {
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Specifications</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Mileage */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="text-6xl mb-3 text-blue-500">⛽</div>
               <h3 className="text-xl font-bold text-black mb-1">54 kmpl</h3>
               <p className="text-gray-600 text-sm">Mileage</p>
             </div>
             
             {/* Seating */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                 <img src="/images/pp.png" alt="Seating" className="w-12 h-12" style={{filter: 'hue-rotate(200deg) saturate(2)'}} />
               </div>
@@ -171,7 +171,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Engine */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="text-6xl mb-3">
                 <svg className="w-16 h-16 mx-auto text-blue-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
@@ -182,7 +182,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Top Speed */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="text-6xl mb-3 text-blue-500">🕐</div>
               <h3 className="text-xl font-bold text-black mb-1">85 km/h</h3>
               <p className="text-gray-600 text-sm">Top Speed</p>
@@ -604,7 +604,7 @@ export default function BikeDetails() {
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Customer Reviews</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Review 1 */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6">
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
               <div className="flex items-center mb-3">
                 <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
                   R
@@ -620,7 +620,7 @@ export default function BikeDetails() {
                     key={i} 
                     onClick={() => setReview1Rating(i + 1)}
                     className={`text-lg transition-colors ${
-                      i < review1Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-white bg-gray-300 hover:text-yellow-400'
+                      i < review1Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
                     }`}
                   >
                     ★
@@ -631,7 +631,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Review 2 */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6">
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
               <div className="flex items-center mb-3">
                 <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
                   P
@@ -647,7 +647,7 @@ export default function BikeDetails() {
                     key={i} 
                     onClick={() => setReview2Rating(i + 1)}
                     className={`text-lg transition-colors ${
-                      i < review2Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-white bg-gray-300 hover:text-yellow-400'
+                      i < review2Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
                     }`}
                   >
                     ★
@@ -658,7 +658,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Review 3 */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6">
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
               <div className="flex items-center mb-3">
                 <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
                   A
@@ -674,7 +674,7 @@ export default function BikeDetails() {
                     key={i} 
                     onClick={() => setReview3Rating(i + 1)}
                     className={`text-lg transition-colors ${
-                      i < review3Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-white bg-gray-300 hover:text-yellow-400'
+                      i < review3Rating ? 'text-yellow-400 hover:text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
                     }`}
                   >
                     ★
