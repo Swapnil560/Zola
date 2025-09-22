@@ -10,7 +10,7 @@ export default function BackButton({ to = '/', label = '← Go Back' }: BackButt
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2" style={{paddingTop: '80px'}}>
-      <button onClick={() => navigate(to)} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">{label}</button>
+      <button onClick={() => navigate(to)} className="text-white px-4 py-2 rounded-lg hover:opacity-80 transition-colors" style={{backgroundColor: '#00473E'}}>{label}</button>
     </div>
   )
 }
