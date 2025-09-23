@@ -46,13 +46,13 @@ export default function BikeDetails() {
   const premiumInsurance = useToggle(true)
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-50">
       <Header isMobileMenuOpen={mobileMenu.value} setIsMobileMenuOpen={mobileMenu.toggle} />
       
       <BackButton />
 
       <main style={{paddingTop: '16px'}}>
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 bg-gray-200">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 bg-gray-50">
           <div className="flex flex-col lg:flex-row gap-8 lg:items-stretch">
             {/* Left Side - Images */}
             <div className="lg:w-1/2 flex flex-col h-full">
@@ -151,11 +151,11 @@ export default function BikeDetails() {
         </section>
 
         {/* Specifications Section */}
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-200">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-50">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Specifications</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Mileage */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                 <img src="/images/bp.png" alt="Mileage" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
               </div>
@@ -164,7 +164,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Seating */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                 <img src="/images/bppl.png" alt="Seating" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
               </div>
@@ -173,7 +173,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Engine */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                 <img src="/images/br.png" alt="Engine" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
               </div>
@@ -182,7 +182,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Top Speed */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 text-center">
               <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                 <img src="/images/bc.png" alt="Top Speed" className="w-12 h-12" style={{filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(200deg) brightness(104%) contrast(97%)'}} />
               </div>
@@ -193,7 +193,7 @@ export default function BikeDetails() {
         </section>
 
         {/* Booking Steps */}
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-12 lg:mt-8 bg-gray-200">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-12 lg:mt-8 bg-gray-50">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-center lg:items-center gap-3 sm:gap-4 lg:gap-8 mb-8 px-2">
             {[
               { num: 1, label: 'Dates', icon: '📅' },
@@ -229,7 +229,7 @@ export default function BikeDetails() {
           </div>
 
           {/* Step Content */}
-          <div className="bg-gray-300 rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-300">
+          <div className="bg-gray-100 rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-200">
             {currentStep === 1 && (
               <div className="max-w-2xl mx-auto">
                 <div className="text-center mb-8">
@@ -607,11 +607,11 @@ export default function BikeDetails() {
         <ContactSection />
         
         {/* Customer Reviews Section */}
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-200">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-50">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Customer Reviews</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Review 1 */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
               <div className="flex items-center mb-3">
                 <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
                   R
@@ -638,7 +638,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Review 2 */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
               <div className="flex items-center mb-3">
                 <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
                   P
@@ -665,7 +665,7 @@ export default function BikeDetails() {
             </div>
             
             {/* Review 3 */}
-            <div className="bg-gray-300 border border-gray-200 rounded-lg p-6">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
               <div className="flex items-center mb-3">
                 <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
                   A

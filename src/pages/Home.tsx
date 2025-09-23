@@ -121,17 +121,60 @@ export default function Home() {
             <p className="text-gray-600">Based on 10,000+ reviews</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-gray-200 p-6 rounded-lg">
-                <div className="flex text-yellow-400 mb-4">
-                  {[...Array(4)].map((_, j) => (
-                    <span key={j}>★</span>
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4">"Booked an Activa at 8am, riding by 8:10. So smooth!"</p>
-                <p className="text-gray-600 font-medium">- Ankita</p>
+            <div className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
               </div>
-            ))}
+              <p className="text-gray-700 mb-4">"Snagged a scooter rental and hit the streets in no time—couldn't believe how fast it was!"</p>
+              <p className="text-gray-600 font-medium">- Rohan</p>
+            </div>
+            <div className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"Reserved a bike and was cruising in a flash—impressive turnaround!"</p>
+              <p className="text-gray-600 font-medium">- Kavita</p>
+            </div>
+            <div className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"Locked in a ride and was exploring the city quickly—top-notch service!"</p>
+              <p className="text-gray-600 font-medium">- Sameer</p>
+            </div>
+            <div className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"Booked and rolled out smoothly—even that early!"</p>
+              <p className="text-gray-600 font-medium">- Ishita</p>
+            </div>
+            <div className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"Grabbed a scooter and was off on my adventure in a jiffy—excellent efficiency!"</p>
+              <p className="text-gray-600 font-medium">- Karan</p>
+            </div>
+            <div className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"Secured a rental and was riding in no time—felt like magic, truly seamless!"</p>
+              <p className="text-gray-600 font-medium">- Meera</p>
+            </div>
           </div>
         </div>
       </section>

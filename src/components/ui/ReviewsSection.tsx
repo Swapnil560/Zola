@@ -27,17 +27,60 @@ export default function ReviewsSection({
           <p className="text-gray-600">Based on {totalReviews.toLocaleString()}+ reviews</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(reviewCount)].map((_, i) => (
-            <div key={i} className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Booked an Activa at 8am, riding by 8:10. So smooth!"</p>
-              <p className="text-gray-600 font-medium">- Ankita</p>
+          <div className="bg-gray-200 p-6 rounded-lg">
+            <div className="flex text-yellow-400 mb-4">
+              {[...Array(4)].map((_, j) => (
+                <span key={j}>★</span>
+              ))}
             </div>
-          ))}
+            <p className="text-gray-700 mb-4">"Snapped up a scooter and was rolling in no time—fantastic process!"</p>
+            <p className="text-gray-600 font-medium">- Dev</p>
+          </div>
+          <div className="bg-gray-200 p-6 rounded-lg">
+            <div className="flex text-yellow-400 mb-4">
+              {[...Array(4)].map((_, j) => (
+                <span key={j}>★</span>
+              ))}
+            </div>
+            <p className="text-gray-700 mb-4">"Booked a bike and took off with ease—outstanding support!"</p>
+            <p className="text-gray-600 font-medium">- Shalini</p>
+          </div>
+          <div className="bg-gray-200 p-6 rounded-lg">
+            <div className="flex text-yellow-400 mb-4">
+              {[...Array(4)].map((_, j) => (
+                <span key={j}>★</span>
+              ))}
+            </div>
+            <p className="text-gray-700 mb-4">"Secured a ride and was on the move quickly—top-class service!"</p>
+            <p className="text-gray-600 font-medium">- Nikhil</p>
+          </div>
+          <div className="bg-gray-200 p-6 rounded-lg">
+            <div className="flex text-yellow-400 mb-4">
+              {[...Array(4)].map((_, j) => (
+                <span key={j}>★</span>
+              ))}
+            </div>
+            <p className="text-gray-700 mb-4">"Grabbed a scooter and started my trip effortlessly—great job!"</p>
+            <p className="text-gray-600 font-medium">- Priyanka</p>
+          </div>
+          <div className="bg-gray-200 p-6 rounded-lg">
+            <div className="flex text-yellow-400 mb-4">
+              {[...Array(4)].map((_, j) => (
+                <span key={j}>★</span>
+              ))}
+            </div>
+            <p className="text-gray-700 mb-4">"Rented a bike and was off in a snap—highly efficient!"</p>
+            <p className="text-gray-600 font-medium">- Aditya</p>
+          </div>
+          <div className="bg-gray-200 p-6 rounded-lg">
+            <div className="flex text-yellow-400 mb-4">
+              {[...Array(4)].map((_, j) => (
+                <span key={j}>★</span>
+              ))}
+            </div>
+            <p className="text-gray-700 mb-4">"Locked in a rental and hit the road smoothly—amazing experience!"</p>
+            <p className="text-gray-600 font-medium">- Rhea</p>
+          </div>
         </div>
       </div>
     </section>

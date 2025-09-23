@@ -4,7 +4,7 @@ export const serviceCards: ServiceCard[] = [
   {
     title: 'Rent a Bike',
     subtitle: 'Two-wheelers for quick rides',
-    image: '/images/rent a bike.png'
+    image: '/images/1.png'
   },
   {
     title: 'Rent a Cab',

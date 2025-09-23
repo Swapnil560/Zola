@@ -8,13 +8,23 @@ interface TourCardProps {
 
 export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps) {
   return (
-    <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
-      <div className="relative h-48">
-        <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
+    <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+      <div className="relative h-48 overflow-hidden">
+        <img src={tour.image} alt={tour.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
         <div className="absolute top-2 left-2 bg-[#00473E] text-white px-2 py-1 rounded-full text-xs flex items-center">
           <span className="mr-1 text-white">★</span>
           <span>Most Popular</span>
         </div>
+        <button 
+          onClick={onToggleLike}
+          className="absolute top-2 right-2 text-2xl transition-colors"
+          style={{
+            color: isLiked ? '#ef4444' : '#ffffff', 
+            textShadow: isLiked ? 'none' : '0 0 1px #000'
+          }}
+        >
+          ♥
+        </button>
       </div>
       <div className="p-4 sm:p-6">
         <p className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 rounded-lg mb-3 inline-block" style={{backgroundColor: 'rgba(0, 0, 0, 0.85)'}}>
@@ -29,18 +39,8 @@ export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps)
           </div>
           <span className="text-gray-600 text-sm">{tour.reviews} reviews</span>
         </div>
-        <h3 className="text-xl font-bold mb-4 flex items-center justify-between">
+        <h3 className="text-xl font-bold mb-4">
           {tour.title}
-          <button 
-            onClick={onToggleLike}
-            className="text-2xl transition-colors"
-            style={{
-              color: isLiked ? '#ef4444' : '#ffffff', 
-              textShadow: isLiked ? 'none' : '0 0 1px #000'
-            }}
-          >
-            ♥
-          </button>
         </h3>
         <p className="text-gray-600 mb-4">{tour.description}</p>
         <div className="space-y-2 mb-6">
