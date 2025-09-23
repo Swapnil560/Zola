@@ -6,6 +6,17 @@ interface HeroSectionProps {
 
 export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
+  const [pickupDateTime, setPickupDateTime] = useState('')
+  const [dropoffDateTime, setDropoffDateTime] = useState('')
+
+  const formatDateTime = (value: string) => {
+    const numbers = value.replace(/\D/g, '')
+    if (numbers.length <= 2) return numbers
+    if (numbers.length <= 4) return `${numbers.slice(0, 2)}/${numbers.slice(2)}`
+    if (numbers.length <= 8) return `${numbers.slice(0, 2)}/${numbers.slice(2, 4)}/${numbers.slice(4)}`
+    if (numbers.length <= 10) return `${numbers.slice(0, 2)}/${numbers.slice(2, 4)}/${numbers.slice(4, 8)} ${numbers.slice(8, 10)}`
+    return `${numbers.slice(0, 2)}/${numbers.slice(2, 4)}/${numbers.slice(4, 8)} ${numbers.slice(8, 10)}:${numbers.slice(10, 12)}`
+  }
 
   return (
     <section className="relative h-[750px] bg-cover bg-center pt-16 mx-4 sm:mx-6 lg:mx-8 rounded-lg overflow-hidden" style={{backgroundImage: 'url("/images/Hero.png")'}}>
@@ -67,11 +78,25 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Pickup Date and Time</label>
-                      <input type="datetime-local" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
+                      <input 
+                        type="text" 
+                        value={pickupDateTime}
+                        onChange={(e) => setPickupDateTime(formatDateTime(e.target.value))}
+                        placeholder="dd/mm/yyyy --:--"
+                        maxLength={16}
+                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
+                      />
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Drop-off Date and Time</label>
-                      <input type="datetime-local" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
+                      <input 
+                        type="text" 
+                        value={dropoffDateTime}
+                        onChange={(e) => setDropoffDateTime(formatDateTime(e.target.value))}
+                        placeholder="dd/mm/yyyy --:--"
+                        maxLength={16}
+                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
+                      />
                     </div>
                   </div>
                 </div>
