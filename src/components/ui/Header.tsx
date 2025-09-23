@@ -26,7 +26,7 @@ const defaultNavItems: NavItem[] = [
 export default function Header({ 
   isMobileMenuOpen, 
   setIsMobileMenuOpen,
-  logo = '/images/logo.png',
+  logo = '/images/zolalog.png',
   title = 'ZOLA Adventures',
   navItems = defaultNavItems,
   contactText = 'Contact Us'
@@ -35,8 +35,8 @@ export default function Header({
     <header className="fixed top-0 w-full bg-gray-100 shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <img src={logo} alt={`${title} Logo`} className="w-12 h-12 mr-3" />
+          <div className="flex items-center -ml-2">
+            <img src={logo} alt={`${title} Logo`} className="w-24 h-24 object-contain mr-1 -ml-2" />
             <span className="text-sm sm:text-lg md:text-xl font-bold text-gray-800">{title}</span>
           </div>
           <nav className="hidden sm:flex space-x-1 md:space-x-4 lg:space-x-8 text-xs md:text-base">
