@@ -2,14 +2,12 @@ interface ReviewsSectionProps {
   title?: string
   rating?: number
   totalReviews?: number
-  reviewCount?: number
 }
 
 export default function ReviewsSection({ 
   title = "Real Customers. Real Reviews. Real Happy.",
   rating = 4.8,
-  totalReviews = 10000,
-  reviewCount = 6
+  totalReviews = 10000
 }: ReviewsSectionProps) {
   return (
     <section className="py-16 bg-gray-100">
