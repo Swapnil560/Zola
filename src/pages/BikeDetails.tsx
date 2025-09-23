@@ -46,13 +46,13 @@ export default function BikeDetails() {
   const premiumInsurance = useToggle(true)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-200">
       <Header isMobileMenuOpen={mobileMenu.value} setIsMobileMenuOpen={mobileMenu.toggle} />
       
       <BackButton />
 
       <main style={{paddingTop: '16px'}}>
-        <section className="max-w-6xl mx-auto p-4 sm:p-6">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 bg-gray-200">
           <div className="flex flex-col lg:flex-row gap-8 lg:items-stretch">
             {/* Left Side - Images */}
             <div className="lg:w-1/2 flex flex-col h-full">
@@ -151,7 +151,7 @@ export default function BikeDetails() {
         </section>
 
         {/* Specifications Section */}
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-200">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Specifications</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Mileage */}
@@ -193,7 +193,7 @@ export default function BikeDetails() {
         </section>
 
         {/* Booking Steps */}
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-12 lg:mt-8">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-12 lg:mt-8 bg-gray-200">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-center lg:items-center gap-3 sm:gap-4 lg:gap-8 mb-8 px-2">
             {[
               { num: 1, label: 'Dates', icon: '📅' },
@@ -607,7 +607,7 @@ export default function BikeDetails() {
         <ContactSection />
         
         {/* Customer Reviews Section */}
-        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8">
+        <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-200">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Customer Reviews</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Review 1 */}
