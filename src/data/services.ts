@@ -9,7 +9,7 @@ export const serviceCards: ServiceCard[] = [
   {
     title: 'Rent a Cab',
     subtitle: 'Comfortable taxi service',
-    image: '/images/rent a cab.png'
+    image: '/images/innova.jpg'
   },
   {
     title: 'Rent a Tempo Traveller',
