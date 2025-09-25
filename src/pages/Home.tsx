@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/ui/Header'
 import Footer from '../components/ui/Footer'
@@ -6,6 +7,9 @@ import HeroSection from '../components/ui/HeroSection'
 import VehicleCard from '../components/ui/VehicleCard'
 import TourCard from '../components/ui/TourCard'
 import ServiceCard from '../components/ui/ServiceCard'
+import Button from '../components/ui/Button'
+import FeatureList from '../components/ui/FeatureList'
+import ReviewsSection from '../components/ui/ReviewsSection'
 import { popularBikes } from '../data/vehicles'
 import { popularTours } from '../data/tours'
 import { serviceCards, whyChooseUsFeatures } from '../data/services'
@@ -18,6 +22,7 @@ export default function Home() {
   const bikeLikes = useLikes()
   const tourLikes = useLikes()
   const mobileMenu = useToggle()
+  const [showAllBikes, setShowAllBikes] = useState(false)
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,17 +51,7 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl font-bold mb-6 leading-tight">Providing car rental services for Meghalaya, Arunachal, Assam, Nagaland, Mizoram</h2>
               <p className="text-gray-600 mb-8 text-base sm:text-lg leading-relaxed">At Zola Adventures we focus on providing the best holiday experience you could have ever planned. We extend our hands to every extent to provide the support we can. Why us? We are one the oldest rentals in Guwahati. Experienced team, fast booking, no booking transfers, tie up with many vendors.</p>
               <p className="text-gray-600 mb-8 text-base sm:text-lg leading-relaxed font-semibold">Call us to book a ride</p>
-              <ul className="space-y-6">
-                {whyChooseUsFeatures.map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="w-3 h-3 rounded-full mr-4 mt-2 flex-shrink-0" style={{backgroundColor: '#00473E'}}></span>
-                    <div className="flex-1">
-                      <span className="font-semibold block text-gray-900 mb-1">{item.name}</span>
-                      <span className="text-sm text-gray-600 leading-relaxed">{item.desc}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              <FeatureList features={whyChooseUsFeatures} />
             </div>
             <img src="/images/providing car rental for meghalaya.png" alt="Car rental services" className="w-full h-full object-cover rounded-lg" />
           </div>
@@ -69,7 +64,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-4">Our Most Popular Bikes</h2>
           <p className="text-gray-600 text-center mb-12">Reliable, stylish, and ready for your next trip</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {popularBikes.map((bike) => (
+            {(showAllBikes ? popularBikes : popularBikes.slice(0, 3)).map((bike) => (
               <VehicleCard 
                 key={bike.id}
                 vehicle={bike}
@@ -80,9 +75,9 @@ export default function Home() {
             ))}
           </div>
           <div className="text-center mt-8">
-            <button className="text-black px-8 py-3 rounded-lg font-medium hover:scale-105 transition-all duration-200" style={{backgroundColor: '#E5E5E5'}} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D1D1D1'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#E5E5E5'}>
-              View All →
-            </button>
+            <Button variant="secondary" onClick={() => setShowAllBikes(!showAllBikes)}>
+              {showAllBikes ? 'Show Less ←' : 'View All →'}
+            </Button>
           </div>
         </div>
       </section>
@@ -105,79 +100,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Customer Reviews */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4">Real Customers. Real Reviews. Real Happy.</h2>
-          <div className="text-center mb-12">
-            <div className="flex justify-center items-center mb-2">
-              <div className="flex text-yellow-400 mr-2">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-2xl">★</span>
-                ))}
-              </div>
-              <span className="text-3xl font-bold">4.8</span>
-            </div>
-            <p className="text-gray-600">Based on 10,000+ reviews</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Snagged a scooter rental and hit the streets in no time—couldn't believe how fast it was!"</p>
-              <p className="text-gray-600 font-medium">- Rohan</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Reserved a bike and was cruising in a flash—impressive turnaround!"</p>
-              <p className="text-gray-600 font-medium">- Kavita</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Locked in a ride and was exploring the city quickly—top-notch service!"</p>
-              <p className="text-gray-600 font-medium">- Sameer</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Booked and rolled out smoothly—even that early!"</p>
-              <p className="text-gray-600 font-medium">- Ishita</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Grabbed a scooter and was off on my adventure in a jiffy—excellent efficiency!"</p>
-              <p className="text-gray-600 font-medium">- Karan</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg">
-              <div className="flex text-yellow-400 mb-4">
-                {[...Array(4)].map((_, j) => (
-                  <span key={j}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">"Secured a rental and was riding in no time—felt like magic, truly seamless!"</p>
-              <p className="text-gray-600 font-medium">- Meera</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ReviewsSection />
 
       <FAQSection categories={toursFAQCategories} />
 

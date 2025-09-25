@@ -2,12 +2,14 @@ interface ReviewsSectionProps {
   title?: string
   rating?: number
   totalReviews?: number
+  maxReviews?: number
 }
 
 export default function ReviewsSection({ 
   title = "Real Customers. Real Reviews. Real Happy.",
   rating = 4.8,
-  totalReviews = 10000
+  totalReviews = 10000,
+  maxReviews = 6
 }: ReviewsSectionProps) {
   return (
     <section className="py-16 bg-gray-100">
@@ -25,60 +27,24 @@ export default function ReviewsSection({
           <p className="text-gray-600">Based on {totalReviews.toLocaleString()}+ reviews</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-gray-200 p-6 rounded-lg">
-            <div className="flex text-yellow-400 mb-4">
-              {[...Array(4)].map((_, j) => (
-                <span key={j}>★</span>
-              ))}
+          {[
+            { review: "Rented a scooter and was riding in minutes—super smooth experience!", name: "Aarav" },
+            { review: "Grabbed a bike effortlessly and started my journey—excellent service!", name: "Priya" },
+            { review: "Got my ride instantly and hit the road—really impressed with the support!", name: "Rohan" },
+            { review: "Grabbed a scooter and started my trip effortlessly—great job!", name: "Priyanka" },
+            { review: "Rented a bike and was off in a snap—highly efficient!", name: "Aditya" },
+            { review: "Locked in a rental and hit the road smoothly—amazing experience!", name: "Rhea" }
+          ].slice(0, maxReviews).map((item, i) => (
+            <div key={i} className="bg-gray-200 p-6 rounded-lg">
+              <div className="flex text-yellow-400 mb-4">
+                {[...Array(4)].map((_, j) => (
+                  <span key={j}>★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"{item.review}"</p>
+              <p className="text-gray-600 font-medium">- {item.name}</p>
             </div>
-            <p className="text-gray-700 mb-4">"Snapped up a scooter and was rolling in no time—fantastic process!"</p>
-            <p className="text-gray-600 font-medium">- Dev</p>
-          </div>
-          <div className="bg-gray-200 p-6 rounded-lg">
-            <div className="flex text-yellow-400 mb-4">
-              {[...Array(4)].map((_, j) => (
-                <span key={j}>★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 mb-4">"Booked a bike and took off with ease—outstanding support!"</p>
-            <p className="text-gray-600 font-medium">- Shalini</p>
-          </div>
-          <div className="bg-gray-200 p-6 rounded-lg">
-            <div className="flex text-yellow-400 mb-4">
-              {[...Array(4)].map((_, j) => (
-                <span key={j}>★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 mb-4">"Secured a ride and was on the move quickly—top-class service!"</p>
-            <p className="text-gray-600 font-medium">- Nikhil</p>
-          </div>
-          <div className="bg-gray-200 p-6 rounded-lg">
-            <div className="flex text-yellow-400 mb-4">
-              {[...Array(4)].map((_, j) => (
-                <span key={j}>★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 mb-4">"Grabbed a scooter and started my trip effortlessly—great job!"</p>
-            <p className="text-gray-600 font-medium">- Priyanka</p>
-          </div>
-          <div className="bg-gray-200 p-6 rounded-lg">
-            <div className="flex text-yellow-400 mb-4">
-              {[...Array(4)].map((_, j) => (
-                <span key={j}>★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 mb-4">"Rented a bike and was off in a snap—highly efficient!"</p>
-            <p className="text-gray-600 font-medium">- Aditya</p>
-          </div>
-          <div className="bg-gray-200 p-6 rounded-lg">
-            <div className="flex text-yellow-400 mb-4">
-              {[...Array(4)].map((_, j) => (
-                <span key={j}>★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 mb-4">"Locked in a rental and hit the road smoothly—amazing experience!"</p>
-            <p className="text-gray-600 font-medium">- Rhea</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
