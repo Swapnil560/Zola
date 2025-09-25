@@ -4,7 +4,7 @@ import { Tour, ItineraryDay } from '../types'
 export const popularTours: Tour[] = [
   {
     id: 1,
-    title: '5-Day Meghalaya Escape',
+    title: 'Meghalaya Bike Trip',
     duration: '5 Days / 4 Nights',
     rating: 4,
     reviews: 44,
@@ -18,21 +18,21 @@ export const popularTours: Tour[] = [
   },
   {
     id: 2,
-    title: '5-Day Meghalaya Escape',
-    duration: '5 Days / 4 Nights',
+    title: 'Tawang Bike Trip',
+    duration: '7 Days / 6 Nights',
     rating: 4,
-    reviews: 44,
-    description: 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
+    reviews: 32,
+    description: 'Experience the mystical beauty of Tawang with breathtaking monasteries and mountain landscapes.',
     highlights: [
-      '✓ 1 night Shillong\'s charming hills',
-      '✓ 2 nights scenic Cherrapunjee',
-      '✓ 1 night by the crystal waters of Dawki'
+      '✓ 2 nights in Dirang valley town',
+      '✓ 3 nights in Tawang at high altitude',
+      '✓ 1 night in Bomdila mountain town'
     ],
-    image: '/images/nohkalikai-falls.jpg'
+    image: '/images/tourmage 4.jpg'
   },
   {
     id: 3,
-    title: '5-Day Meghalaya Escape',
+    title: 'Kaziranga National Park',
     duration: '5 Days / 4 Nights',
     rating: 4,
     reviews: 44,
@@ -46,53 +46,40 @@ export const popularTours: Tour[] = [
   }
 ]
 
-// Tours page tours - More Epic Adventures
-export const epicAdventures: Tour[] = [
-  {
-    id: 4,
-    title: '5-Day Meghalaya Escape',
+// Reusable function to generate epic adventures
+export const getEpicAdventures = (tourType: 'meghalaya' | 'tawang'): Tour[] => {
+  const isTawang = tourType === 'tawang'
+  const baseId = isTawang ? 7 : 4
+  const images = ['/images/5-day meghalay escape.png', '/images/Hero.png', '/images/gallery-1920x1080-5.jpg']
+  
+  return images.map((image, index) => ({
+    id: baseId + index,
+    title: isTawang ? '5-Day Tawang Escape' : '5-Day Meghalaya Escape',
     duration: '5 Days / 4 Nights',
     rating: 4,
-    reviews: 44,
-    description: 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
-    highlights: [
-      '✓ 1 night Shillong\'s charming hills',
-      '✓ 2 nights scenic Cherrapunjee',
-      '✓ 1 night by the crystal waters of Dawki'
-    ],
-    image: '/images/5-day meghalay escape.png'
-  },
-  {
-    id: 5,
-    title: '5-Day Meghalaya Escape',
-    duration: '5 Days / 4 Nights',
-    rating: 4,
-    reviews: 44,
-    description: 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
-    highlights: [
-      '✓ 1 night Shillong\'s charming hills',
-      '✓ 2 nights scenic Cherrapunjee',
-      '✓ 1 night by the crystal waters of Dawki'
-    ],
-    image: '/images/Hero.png'
-  },
-  {
-    id: 6,
-    title: '5-Day Meghalaya Escape',
-    duration: '5 Days / 4 Nights',
-    rating: 4,
-    reviews: 44,
-    description: 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
-    highlights: [
-      '✓ 1 night Shillong\'s charming hills',
-      '✓ 2 nights scenic Cherrapunjee',
-      '✓ 1 night by the crystal waters of Dawki'
-    ],
-    image: '/images/gallery-1920x1080-5.jpg'
-  }
-]
+    reviews: isTawang ? 28 : 44,
+    description: isTawang 
+      ? 'Experience the mystical beauty of Tawang with breathtaking monasteries and mountain landscapes.'
+      : 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
+    highlights: isTawang 
+      ? [
+          '✓ 2 nights in Tawang at high altitude',
+          '✓ 1 night in Bomdila mountain town',
+          '✓ Visit Sela Pass and Madhuri Lake'
+        ]
+      : [
+          '✓ 1 night Shillong\'s charming hills',
+          '✓ 2 nights scenic Cherrapunjee',
+          '✓ 1 night by the crystal waters of Dawki'
+        ],
+    image
+  }))
+}
 
-export const itinerary: ItineraryDay[] = [
+// For backward compatibility
+export const epicAdventures = getEpicAdventures('meghalaya')
+
+export const meghalayaItinerary: ItineraryDay[] = [
   {
     day: 1,
     title: "Arrival in Guwahati",
@@ -178,3 +165,91 @@ export const itinerary: ItineraryDay[] = [
     image: '/images/back.png'
   }
 ]
+
+export const tawangItinerary: ItineraryDay[] = [
+  {
+    day: 1,
+    title: "Arrival at Guwahati / Tezpur",
+    location: "Guwahati/Tezpur, Assam",
+    distance: "0 km",
+    highlights: [
+      "Airport pickup",
+      "Bike allocation & briefing"
+    ],
+    image: '/images/airport.avif'
+  },
+  {
+    day: 2,
+    title: "Guwahati - Dirang",
+    location: "Dirang, Arunachal Pradesh",
+    distance: "320 km",
+    highlights: [
+      "Long scenic ride through Assam and Arunachal",
+      "Cross into Arunachal Pradesh",
+      "Reach the beautiful valley town of Dirang"
+    ],
+    image: '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg'
+  },
+  {
+    day: 3,
+    title: "Dirang - Tawang",
+    location: "Tawang, Arunachal Pradesh",
+    distance: "140 km",
+    highlights: [
+      "Cross Sela Pass at 13,700 feet",
+      "Visit Sela Lake and Jaswant Garh War Memorial",
+      "Arrive in the mystical town of Tawang"
+    ],
+    image: '/images/sides.avif'
+  },
+  {
+    day: 4,
+    title: "Explore Tawang",
+    location: "Tawang, Arunachal Pradesh",
+    distance: "50 km",
+    highlights: [
+      "Visit Tawang Monastery - largest in India",
+      "Explore Urgelling Monastery",
+      "Visit Tawang War Memorial and local markets"
+    ],
+    image: '/images/stoC.jpg'
+  },
+  {
+    day: 5,
+    title: "Tawang - Bum La Pass - Madhuri Lake",
+    location: "Bum La Pass & Madhuri Lake",
+    distance: "80 km",
+    highlights: [
+      "Visit Bum La Pass at Indo-China border",
+      "Explore the famous Madhuri Lake",
+      "Experience high altitude adventure"
+    ],
+    image: '/images/root.jpeg'
+  },
+  {
+    day: 6,
+    title: "Tawang - Bomdila",
+    location: "Bomdila, Arunachal Pradesh",
+    distance: "100 km",
+    highlights: [
+      "Scenic ride to Bomdila",
+      "Visit Bomdila Monastery",
+      "Enjoy mountain views and local culture"
+    ],
+    image: '/images/nohkalikai-falls.jpg'
+  },
+  {
+    day: 7,
+    title: "Bomdila - Guwahati/Tezpur",
+    location: "Guwahati/Tezpur",
+    distance: "320 km",
+    highlights: [
+      "Long scenic ride back through mountains",
+      "Stop at viewpoints for photography",
+      "Farewell dinner and trip reflections"
+    ],
+    image: '/images/back.png'
+  }
+]
+
+export const itinerary = meghalayaItinerary

@@ -14,6 +14,7 @@ import { popularBikes } from '../data/vehicles'
 import { popularTours } from '../data/tours'
 import { serviceCards, whyChooseUsFeatures } from '../data/services'
 import { toursFAQCategories } from '../data/faqs'
+import { homeReviews } from '../data/reviews'
 import { useLikes } from '../hooks/useLikes'
 import { useToggle } from '../hooks/useToggle'
 
@@ -81,14 +82,16 @@ export default function Home() {
         </div>
       </section>
 
-      <TourSection 
-        title="Popular Outstation Tours"
-        subtitle="Explore the beautiful Northeast India"
-        tours={popularTours}
-        backgroundColor="bg-gray-50"
-      />
+      <div id="popular-tours">
+        <TourSection 
+          title="Popular Outstation Tours"
+          subtitle="Explore the beautiful Northeast India"
+          tours={popularTours}
+          backgroundColor="bg-gray-50"
+        />
+      </div>
 
-      <ReviewsSection />
+      <ReviewsSection reviews={homeReviews} />
 
       <FAQSection categories={toursFAQCategories} />
 

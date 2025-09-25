@@ -1,15 +1,26 @@
+import { Review } from '../../data/reviews'
+
 interface ReviewsSectionProps {
   title?: string
   rating?: number
   totalReviews?: number
   maxReviews?: number
+  reviews?: Review[]
 }
 
 export default function ReviewsSection({ 
   title = "Real Customers. Real Reviews. Real Happy.",
   rating = 4.8,
   totalReviews = 10000,
-  maxReviews = 6
+  maxReviews = 6,
+  reviews = [
+    { review: "Rented a scooter and was riding in minutes—super smooth experience!", name: "Aarav" },
+    { review: "Grabbed a bike effortlessly and started my journey—excellent service!", name: "Priya" },
+    { review: "Got my ride instantly and hit the road—really impressed with the support!", name: "Rohan" },
+    { review: "Grabbed a scooter and started my trip effortlessly—great job!", name: "Priyanka" },
+    { review: "Rented a bike and was off in a snap—highly efficient!", name: "Aditya" },
+    { review: "Locked in a rental and hit the road smoothly—amazing experience!", name: "Rhea" }
+  ]
 }: ReviewsSectionProps) {
   return (
     <section className="py-16 bg-gray-100">
@@ -27,14 +38,7 @@ export default function ReviewsSection({
           <p className="text-gray-600">Based on {totalReviews.toLocaleString()}+ reviews</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { review: "Rented a scooter and was riding in minutes—super smooth experience!", name: "Aarav" },
-            { review: "Grabbed a bike effortlessly and started my journey—excellent service!", name: "Priya" },
-            { review: "Got my ride instantly and hit the road—really impressed with the support!", name: "Rohan" },
-            { review: "Grabbed a scooter and started my trip effortlessly—great job!", name: "Priyanka" },
-            { review: "Rented a bike and was off in a snap—highly efficient!", name: "Aditya" },
-            { review: "Locked in a rental and hit the road smoothly—amazing experience!", name: "Rhea" }
-          ].slice(0, maxReviews).map((item, i) => (
+          {reviews.slice(0, maxReviews).map((item, i) => (
             <div key={i} className="bg-gray-200 p-6 rounded-lg">
               <div className="flex text-yellow-400 mb-4">
                 {[...Array(4)].map((_, j) => (

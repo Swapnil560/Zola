@@ -18,7 +18,7 @@ interface HeaderProps {
 const defaultNavItems: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'Services', href: '#' },
-  { label: 'Tours', to: '/tours' },
+  { label: 'Tours', href: '#popular-tours' },
   { label: 'About', href: '#' },
   { label: 'Terms', href: '#' }
 ]

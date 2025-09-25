@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Tour } from '../../types'
 
 interface TourCardProps {
@@ -7,6 +8,8 @@ interface TourCardProps {
 }
 
 export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps) {
+  const navigate = useNavigate()
+
   return (
     <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer group h-full flex flex-col">
       <div className="relative h-48 overflow-hidden">
@@ -50,7 +53,24 @@ export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps)
             </span>
           ))}
         </div>
-        <button className="w-full py-3 rounded-lg hover:scale-105 transition-all duration-200 font-medium flex items-center justify-center mt-auto" style={{backgroundColor: '#00473E', color: '#89DAD0'}} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003329'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00473E'}>
+        <button 
+          onClick={() => {
+            if (tour.id === 1 || tour.id === 2) {
+              navigate(`/tours/${tour.id}`)
+              window.scrollTo(0, 0)
+            } else if (tour.id >= 4 && tour.id <= 6) {
+              navigate('/tours/1')
+              window.scrollTo(0, 0)
+            } else if (tour.id >= 7 && tour.id <= 9) {
+              navigate('/tours/2')
+              window.scrollTo(0, 0)
+            }
+          }}
+          className="w-full py-3 rounded-lg hover:scale-105 transition-all duration-200 font-medium flex items-center justify-center mt-auto"
+          style={{backgroundColor: '#00473E', color: '#89DAD0'}} 
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#003329'} 
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00473E'}
+        >
           Get Quote
           <img src="/images/pen.png?v=1" alt="Pen" className="w-6 h-6 ml-2" />
         </button>
