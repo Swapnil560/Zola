@@ -23,7 +23,7 @@ export default function BikeDetails() {
   const bike = popularBikes.find(b => b.id === parseInt(id || '1')) || popularBikes[0]
   const [currentStep, setCurrentStep] = useState(1)
   
-  const bikeImages = ['/images/classic 350.png', '/images/122.png', '/images/133.png', '/images/144.png', '/images/blackc.png', '/images/whitec.png']
+  const bikeImages = [bike.image, '/images/dirt.jpg', '/images/gps.jpg', '/images/helmet.jpg', '/images/saddle stay.jpg']
 
 
 

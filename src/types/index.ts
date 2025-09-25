@@ -33,6 +33,7 @@ export interface ItineraryDay {
   location: string
   distance: string
   highlights: string[]
+  image?: string
 }
 
 export interface FAQ {

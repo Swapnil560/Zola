@@ -3,22 +3,20 @@ import { useState } from 'react'
 import Header from '../components/ui/Header'
 import Footer from '../components/ui/Footer'
 import BackButton from '../components/ui/BackButton'
-import TourCard from '../components/ui/TourCard'
+import TourSection from '../components/ui/TourSection'
 import TourInfoCards from '../components/ui/TourInfoCards'
 import ReviewsSection from '../components/ui/ReviewsSection'
 import FAQSection from '../components/ui/FAQSection'
 import Button from '../components/ui/Button'
 import InclusionCard from '../components/ui/InclusionCard'
 import ItineraryItem from '../components/ui/ItineraryItem'
-import { itinerary, popularTours } from '../data/tours'
+import { itinerary, epicAdventures } from '../data/tours'
 import { toursFAQCategories } from '../data/faqs'
-import { useLikes } from '../hooks/useLikes'
 import { useToggle } from '../hooks/useToggle'
 
 export default function Tours() {
   const [openItems, setOpenItems] = useState<number[]>([])
   const mobileMenu = useToggle()
-  const tourLikes = useLikes()
 
   const toggleDay = (day: number) => {
     setOpenItems((prev) =>
@@ -99,6 +97,7 @@ export default function Tours() {
                   highlights={item.highlights}
                   isOpen={openItems.includes(item.day)}
                   onToggle={() => toggleDay(item.day)}
+                  image={item.image}
                 />
               ))}
             </div>
@@ -154,24 +153,12 @@ export default function Tours() {
 
         <ReviewsSection title="What Our Adventurers Say" />
 
-        {/* More Epic Adventures */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl text-gray-900 mb-4 font-bold text-center">More Epic Adventures</h2>
-            <p className="text-gray-600 mb-8 text-center">Discover other incredible motorcycle journeys</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {popularTours.map((tour) => (
-                <div key={tour.id} className="p-4 rounded-lg shadow hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer" style={{backgroundColor: '#E9E9E9'}}>
-                  <TourCard 
-                    tour={tour}
-                    isLiked={tourLikes.isLiked(tour.id)}
-                    onToggleLike={() => tourLikes.toggleLike(tour.id)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TourSection 
+          title="More Epic Adventures"
+          subtitle="Discover other incredible motorcycle journeys"
+          tours={epicAdventures}
+          backgroundColor="bg-white"
+        />
 
         <FAQSection 
           categories={toursFAQCategories} 

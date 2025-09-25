@@ -5,7 +5,7 @@ import Footer from '../components/ui/Footer'
 import FAQSection from '../components/ui/FAQSection'
 import HeroSection from '../components/ui/HeroSection'
 import VehicleCard from '../components/ui/VehicleCard'
-import TourCard from '../components/ui/TourCard'
+import TourSection from '../components/ui/TourSection'
 import ServiceCard from '../components/ui/ServiceCard'
 import Button from '../components/ui/Button'
 import FeatureList from '../components/ui/FeatureList'
@@ -20,7 +20,6 @@ import { useToggle } from '../hooks/useToggle'
 export default function Home() {
   const navigate = useNavigate()
   const bikeLikes = useLikes()
-  const tourLikes = useLikes()
   const mobileMenu = useToggle()
   const [showAllBikes, setShowAllBikes] = useState(false)
 
@@ -70,7 +69,7 @@ export default function Home() {
                 vehicle={bike}
                 isLiked={bikeLikes.isLiked(bike.id)}
                 onToggleLike={() => bikeLikes.toggleLike(bike.id)}
-                onViewDetails={() => navigate('/bike-details')}
+                onViewDetails={() => navigate(`/bike-details/${bike.id}`)}
               />
             ))}
           </div>
@@ -82,23 +81,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Popular Outstation Tours */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4">Popular Outstation Tours</h2>
-          <p className="text-gray-600 text-center mb-12">Explore the beautiful Northeast India</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {popularTours.map((tour) => (
-              <TourCard 
-                key={tour.id}
-                tour={tour}
-                isLiked={tourLikes.isLiked(tour.id)}
-                onToggleLike={() => tourLikes.toggleLike(tour.id)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <TourSection 
+        title="Popular Outstation Tours"
+        subtitle="Explore the beautiful Northeast India"
+        tours={popularTours}
+        backgroundColor="bg-gray-50"
+      />
 
       <ReviewsSection />
 
