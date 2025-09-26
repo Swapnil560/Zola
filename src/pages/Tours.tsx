@@ -88,7 +88,7 @@ export default function Tours() {
                 '/images/tourmage 4.jpg',
                 '/images/tourimage 5.jpg'
               ]).map((image, i) => (
-                <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} className="rounded-md shadow-sm h-32 sm:h-40 lg:h-[270px] w-full object-cover" />
+                <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} loading="lazy" className="rounded-md shadow-sm h-32 sm:h-40 lg:h-[270px] w-full object-cover" />
               ))}
             </div>
           </div>
