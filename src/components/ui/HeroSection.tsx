@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface HeroSectionProps {
   isMobileMenuOpen: boolean
@@ -8,6 +8,21 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
   const [pickupDateTime, setPickupDateTime] = useState('')
   const [dropoffDateTime, setDropoffDateTime] = useState('')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  const formatDateInput = (value: string) => {
+    const numbers = value.replace(/\D/g, '')
+    if (numbers.length <= 2) return numbers
+    if (numbers.length <= 4) return `${numbers.slice(0, 2)}/${numbers.slice(2)}`
+    return `${numbers.slice(0, 2)}/${numbers.slice(2, 4)}/${numbers.slice(4, 8)}`
+  }
 
   const resetForm = () => {
     setPickupDateTime('')
@@ -79,11 +94,13 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                         <button onClick={resetForm} className="ml-auto text-xs text-gray-500 hover:text-gray-700 px-1 py-1">Reset</button>
                       </label>
                       <input 
-                        type="date"
+                        type={isMobile ? "text" : "date"}
                         value={pickupDateTime}
-                        onChange={(e) => setPickupDateTime(e.target.value)}
-                        min="2024-01-01"
-                        max="2030-12-31"
+                        onChange={(e) => setPickupDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
+                        placeholder={isMobile ? "DD/MM/YYYY" : undefined}
+                        maxLength={isMobile ? 10 : undefined}
+                        min={!isMobile ? "2024-01-01" : undefined}
+                        max={!isMobile ? "2030-12-31" : undefined}
                         className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
                       />
                     </div>
@@ -93,11 +110,13 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                         Drop-off Date
                       </label>
                       <input 
-                        type="date"
+                        type={isMobile ? "text" : "date"}
                         value={dropoffDateTime}
-                        onChange={(e) => setDropoffDateTime(e.target.value)}
-                        min="2024-01-01"
-                        max="2030-12-31"
+                        onChange={(e) => setDropoffDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
+                        placeholder={isMobile ? "DD/MM/YYYY" : undefined}
+                        maxLength={isMobile ? 10 : undefined}
+                        min={!isMobile ? "2024-01-01" : undefined}
+                        max={!isMobile ? "2030-12-31" : undefined}
                         className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
                       />
                     </div>
