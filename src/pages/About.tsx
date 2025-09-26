@@ -90,7 +90,7 @@ export default function About() {
               <div className="text-center">
                 <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden">
                   <img 
-                    src="/images/about/about 2.png" 
+                    src="/images/about/Screenshot 2025-09-26 181723.png" 
                     alt="Values" 
                     className="w-full h-full object-cover"
                   />

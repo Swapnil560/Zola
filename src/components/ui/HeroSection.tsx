@@ -100,18 +100,15 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                           max={!isMobile ? "2030-12-31" : undefined}
                           className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
                         />
-                        {isMobile && (
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
-                            {pickupDateTime && (
-                              <button 
-                                onClick={() => setPickupDateTime('')}
-                                className="text-gray-500 hover:text-gray-700"
-                                type="button"
-                              >
-                                ✕
-                              </button>
-                            )}
-                            <span className="text-gray-500">📅</span>
+                        {isMobile && pickupDateTime && (
+                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <button 
+                              onClick={() => setPickupDateTime('')}
+                              className="text-gray-500 hover:text-gray-700"
+                              type="button"
+                            >
+                              ✕
+                            </button>
                           </div>
                         )}
                       </div>
@@ -132,18 +129,15 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                           max={!isMobile ? "2030-12-31" : undefined}
                           className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
                         />
-                        {isMobile && (
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
-                            {dropoffDateTime && (
-                              <button 
-                                onClick={() => setDropoffDateTime('')}
-                                className="text-gray-500 hover:text-gray-700"
-                                type="button"
-                              >
-                                ✕
-                              </button>
-                            )}
-                            <span className="text-gray-500">📅</span>
+                        {isMobile && dropoffDateTime && (
+                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <button 
+                              onClick={() => setDropoffDateTime('')}
+                              className="text-gray-500 hover:text-gray-700"
+                              type="button"
+                            >
+                              ✕
+                            </button>
                           </div>
                         )}
                       </div>
