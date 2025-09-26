@@ -17,7 +17,7 @@ export default function FormInput({ label, type, value, onChange, options, focus
         {type === 'date' ? (
           <input 
             type={window.innerWidth >= 640 ? "date" : "text"}
-            placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy"}
+            placeholder={window.innerWidth >= 640 ? "" : "dd/mm/yyyy"}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${focusClasses} transition-all duration-300`}
