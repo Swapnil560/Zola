@@ -73,21 +73,21 @@ export default function Tours() {
         <section className="w-full px-4 sm:px-6 lg:px-8 mb-6">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-4">
             <img 
-              src={isKaziranga ? '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg' : (isTawang ? '/images/tawang/1.JPG' : '/images/tourimage 1.jpg')} 
+              src={isKaziranga ? '/images/Kaziranga/k2.jpg' : (isTawang ? '/images/tawang/tawang1.jpg' : '/images/tourimage 1.jpg')} 
               alt={`${tourTitle} Main`} 
-              className="rounded-md shadow-sm h-64 sm:h-80 lg:h-[560px] w-full lg:flex-1 object-cover" 
+              className="rounded-md shadow-sm h-64 sm:h-80 lg:h-[560px] w-full lg:w-3/5 object-cover" 
             />
             <div className="grid grid-cols-2 gap-4 w-full lg:flex-1">
               {(isKaziranga ? [
-                '/images/airport.avif',
-                '/images/sides.avif',
-                '/images/root.jpeg',
-                '/images/back.png'
+                '/images/Kaziranga/k1.png',
+                '/images/Kaziranga/k3.jpg',
+                '/images/Kaziranga/k4.jpg',
+                '/images/Kaziranga/k5.jpg'
               ] : (isTawang ? [
-                '/images/tawang/2.JPG',
-                '/images/tawang/3.JPG',
-                '/images/tawang/4.JPG',
-                '/images/tawang/5.JPG'
+                '/images/tawang/t2.jpg',
+                '/images/tawang/t3.jpg',
+                '/images/tawang/t4.jpg',
+                '/images/tawang/t5.jpg'
               ] : [
                 '/images/Tourimage 2.jpg',
                 '/images/tourimage 3.jpg', 

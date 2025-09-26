@@ -42,7 +42,7 @@ export const popularTours: Tour[] = [
       '✓ Jeep safari and elephant safari',
       '✓ Wildlife photography and bird watching'
     ],
-    image: '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg'
+    image: '/images/Kaziranga/k1.png'
   }
 ]
 

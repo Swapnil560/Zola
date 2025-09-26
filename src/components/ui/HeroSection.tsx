@@ -24,10 +24,7 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
     return `${numbers.slice(0, 2)}/${numbers.slice(2, 4)}/${numbers.slice(4, 8)}`
   }
 
-  const resetForm = () => {
-    setPickupDateTime('')
-    setDropoffDateTime('')
-  }
+
 
   return (
     <section className="relative h-[750px] bg-cover bg-center pt-16 mx-4 sm:mx-6 lg:mx-8 rounded-lg overflow-hidden" style={{backgroundImage: 'url("/images/Hero.png")'}}>
@@ -91,34 +88,65 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-2 block flex items-center">
                         <img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> 
                         Pickup Date
-                        <button onClick={resetForm} className="ml-auto text-xs text-gray-500 hover:text-gray-700 px-1 py-1">Reset</button>
                       </label>
-                      <input 
-                        type={isMobile ? "text" : "date"}
-                        value={pickupDateTime}
-                        onChange={(e) => setPickupDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
-                        placeholder={isMobile ? "DD/MM/YYYY" : undefined}
-                        maxLength={isMobile ? 10 : undefined}
-                        min={!isMobile ? "2024-01-01" : undefined}
-                        max={!isMobile ? "2030-12-31" : undefined}
-                        className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
-                      />
+                      <div className="relative">
+                        <input 
+                          type={isMobile ? "text" : "date"}
+                          value={pickupDateTime}
+                          onChange={(e) => setPickupDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
+                          placeholder={isMobile ? "DD/MM/YYYY" : undefined}
+                          maxLength={isMobile ? 10 : undefined}
+                          min={!isMobile ? "2024-01-01" : undefined}
+                          max={!isMobile ? "2030-12-31" : undefined}
+                          className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
+                        />
+                        {isMobile && (
+                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
+                            {pickupDateTime && (
+                              <button 
+                                onClick={() => setPickupDateTime('')}
+                                className="text-gray-500 hover:text-gray-700"
+                                type="button"
+                              >
+                                ✕
+                              </button>
+                            )}
+                            <span className="text-gray-500">📅</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-2 block flex items-center">
                         <img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> 
                         Drop-off Date
                       </label>
-                      <input 
-                        type={isMobile ? "text" : "date"}
-                        value={dropoffDateTime}
-                        onChange={(e) => setDropoffDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
-                        placeholder={isMobile ? "DD/MM/YYYY" : undefined}
-                        maxLength={isMobile ? 10 : undefined}
-                        min={!isMobile ? "2024-01-01" : undefined}
-                        max={!isMobile ? "2030-12-31" : undefined}
-                        className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
-                      />
+                      <div className="relative">
+                        <input 
+                          type={isMobile ? "text" : "date"}
+                          value={dropoffDateTime}
+                          onChange={(e) => setDropoffDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
+                          placeholder={isMobile ? "DD/MM/YYYY" : undefined}
+                          maxLength={isMobile ? 10 : undefined}
+                          min={!isMobile ? "2024-01-01" : undefined}
+                          max={!isMobile ? "2030-12-31" : undefined}
+                          className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
+                        />
+                        {isMobile && (
+                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
+                            {dropoffDateTime && (
+                              <button 
+                                onClick={() => setDropoffDateTime('')}
+                                className="text-gray-500 hover:text-gray-700"
+                                type="button"
+                              >
+                                ✕
+                              </button>
+                            )}
+                            <span className="text-gray-500">📅</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

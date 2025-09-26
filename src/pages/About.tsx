@@ -43,7 +43,7 @@ export default function About() {
               </div>
               <div className="order-first lg:order-last">
                 <img 
-                  src="/images/road-forest.jpg" 
+                  src="/images/about/about road.png" 
                   alt="Road through forest" 
                   className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg shadow-lg"
                 />
@@ -64,7 +64,7 @@ export default function About() {
               <div className="text-center">
                 <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden">
                   <img 
-                    src="/images/car-story.jpg" 
+                    src="/images/about/about car.png" 
                     alt="Mission" 
                     className="w-full h-full object-cover"
                   />
@@ -77,7 +77,7 @@ export default function About() {
               <div className="text-center">
                 <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden">
                   <img 
-                    src="/images/group-story.jpg" 
+                    src="/images/about/about 3.png" 
                     alt="Vision" 
                     className="w-full h-full object-cover"
                   />
@@ -90,7 +90,7 @@ export default function About() {
               <div className="text-center">
                 <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden">
                   <img 
-                    src="/images/handshake-story.jpg" 
+                    src="/images/about/about 2.png" 
                     alt="Values" 
                     className="w-full h-full object-cover"
                   />
