@@ -8,6 +8,17 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
   const [pickupDateTime, setPickupDateTime] = useState('')
   const [dropoffDateTime, setDropoffDateTime] = useState('')
+  
+  const handleDateTimeInput = (e: React.ChangeEvent<HTMLInputElement>, setter: (value: string) => void) => {
+    let value = e.target.value.replace(/[^\d\s:]/g, '')
+    if (value.length >= 2 && value.length <= 8) {
+      value = value.substring(0, 2) + '/' + value.substring(2)
+    }
+    if (value.length >= 5 && value.length <= 11) {
+      value = value.substring(0, 5) + '/' + value.substring(5)
+    }
+    setter(value)
+  }
 
   return (
     <section className="relative h-[750px] bg-cover bg-center pt-16 mx-4 sm:mx-6 lg:mx-8 rounded-lg overflow-hidden" style={{backgroundImage: 'url("/images/Hero.png")'}}>
@@ -71,9 +82,10 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Pickup Date and Time</label>
                       <input 
                         type={window.innerWidth >= 640 ? "datetime-local" : "text"}
-                        placeholder={window.innerWidth >= 640 ? "" : "dd/mm/yyyy --:-- --"}
+                        placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy --:-- --"}
                         value={pickupDateTime}
-                        onChange={(e) => setPickupDateTime(e.target.value)}
+                        onChange={window.innerWidth >= 640 ? (e) => setPickupDateTime(e.target.value) : (e) => handleDateTimeInput(e, setPickupDateTime)}
+                        maxLength={window.innerWidth >= 640 ? undefined : 19}
                         className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
                       />
                     </div>
@@ -81,9 +93,10 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Drop-off Date and Time</label>
                       <input 
                         type={window.innerWidth >= 640 ? "datetime-local" : "text"}
-                        placeholder={window.innerWidth >= 640 ? "" : "dd/mm/yyyy --:-- --"}
+                        placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy --:-- --"}
                         value={dropoffDateTime}
-                        onChange={(e) => setDropoffDateTime(e.target.value)}
+                        onChange={window.innerWidth >= 640 ? (e) => setDropoffDateTime(e.target.value) : (e) => handleDateTimeInput(e, setDropoffDateTime)}
+                        maxLength={window.innerWidth >= 640 ? undefined : 19}
                         className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
                       />
                     </div>
