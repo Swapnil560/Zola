@@ -8,16 +8,10 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
   const [pickupDateTime, setPickupDateTime] = useState('')
   const [dropoffDateTime, setDropoffDateTime] = useState('')
-  
-  const handleDateTimeInput = (e: React.ChangeEvent<HTMLInputElement>, setter: (value: string) => void) => {
-    let value = e.target.value.replace(/[^\d\s:]/g, '')
-    if (value.length >= 2 && value.length <= 8) {
-      value = value.substring(0, 2) + '/' + value.substring(2)
-    }
-    if (value.length >= 5 && value.length <= 11) {
-      value = value.substring(0, 5) + '/' + value.substring(5)
-    }
-    setter(value)
+
+  const resetForm = () => {
+    setPickupDateTime('')
+    setDropoffDateTime('')
   }
 
   return (
@@ -77,27 +71,34 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                       </datalist>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Pickup Date and Time</label>
+                      <label className="text-xs sm:text-sm font-medium text-gray-700 mb-2 block flex items-center">
+                        <img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> 
+                        Pickup Date
+                        <button onClick={resetForm} className="ml-auto text-xs text-gray-500 hover:text-gray-700 px-1 py-1">Reset</button>
+                      </label>
                       <input 
-                        type={window.innerWidth >= 640 ? "datetime-local" : "text"}
-                        placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy --:-- --"}
+                        type="date"
                         value={pickupDateTime}
-                        onChange={window.innerWidth >= 640 ? (e) => setPickupDateTime(e.target.value) : (e) => handleDateTimeInput(e, setPickupDateTime)}
-                        maxLength={window.innerWidth >= 640 ? undefined : 19}
-                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
+                        onChange={(e) => setPickupDateTime(e.target.value)}
+                        min="2024-01-01"
+                        max="2030-12-31"
+                        className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
                       />
                     </div>
                     <div>
-                      <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Drop-off Date and Time</label>
+                      <label className="text-xs sm:text-sm font-medium text-gray-700 mb-2 block flex items-center">
+                        <img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> 
+                        Drop-off Date
+                      </label>
                       <input 
-                        type={window.innerWidth >= 640 ? "datetime-local" : "text"}
-                        placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy --:-- --"}
+                        type="date"
                         value={dropoffDateTime}
-                        onChange={window.innerWidth >= 640 ? (e) => setDropoffDateTime(e.target.value) : (e) => handleDateTimeInput(e, setDropoffDateTime)}
-                        maxLength={window.innerWidth >= 640 ? undefined : 19}
-                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
+                        onChange={(e) => setDropoffDateTime(e.target.value)}
+                        min="2024-01-01"
+                        max="2030-12-31"
+                        className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
                       />
                     </div>
                   </div>
