@@ -33,45 +33,54 @@ export const popularTours: Tour[] = [
   {
     id: 3,
     title: 'Kaziranga National Park',
-    duration: '5 Days / 4 Nights',
-    rating: 4,
-    reviews: 44,
-    description: 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
+    duration: '4 Days / 3 Nights',
+    rating: 5,
+    reviews: 38,
+    description: 'Experience the wildlife paradise of Kaziranga National Park, home to the famous one-horned rhinoceros.',
     highlights: [
-      '✓ 1 night Shillong\'s charming hills',
-      '✓ 2 nights scenic Cherrapunjee',
-      '✓ 1 night by the crystal waters of Dawki'
+      '✓ 2 nights in Kaziranga National Park',
+      '✓ Jeep safari and elephant safari',
+      '✓ Wildlife photography and bird watching'
     ],
     image: '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg'
   }
 ]
 
 // Reusable function to generate epic adventures
-export const getEpicAdventures = (tourType: 'meghalaya' | 'tawang'): Tour[] => {
+export const getEpicAdventures = (tourType: 'meghalaya' | 'tawang' | 'kaziranga'): Tour[] => {
   const isTawang = tourType === 'tawang'
-  const baseId = isTawang ? 7 : 4
+  const isKaziranga = tourType === 'kaziranga'
+  const baseId = isKaziranga ? 10 : (isTawang ? 7 : 4)
   const images = ['/images/5-day meghalay escape.png', '/images/Hero.png', '/images/gallery-1920x1080-5.jpg']
   
   return images.map((image, index) => ({
     id: baseId + index,
-    title: isTawang ? '5-Day Tawang Escape' : '5-Day Meghalaya Escape',
+    title: isKaziranga ? '5-Day Kaziranga National Park' : (isTawang ? '5-Day Tawang Escape' : '5-Day Meghalaya Escape'),
     duration: '5 Days / 4 Nights',
-    rating: 4,
-    reviews: isTawang ? 28 : 44,
-    description: isTawang 
-      ? 'Experience the mystical beauty of Tawang with breathtaking monasteries and mountain landscapes.'
-      : 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.',
-    highlights: isTawang 
+    rating: isKaziranga ? 5 : 4,
+    reviews: isKaziranga ? 38 : (isTawang ? 28 : 44),
+    description: isKaziranga
+      ? 'Experience the wildlife paradise of Kaziranga National Park with extended safari adventures.'
+      : (isTawang 
+        ? 'Experience the mystical beauty of Tawang with breathtaking monasteries and mountain landscapes.'
+        : 'Discover the breathtaking beauty of Meghalaya with our carefully curated tour package.'),
+    highlights: isKaziranga
       ? [
-          '✓ 2 nights in Tawang at high altitude',
-          '✓ 1 night in Bomdila mountain town',
-          '✓ Visit Sela Pass and Madhuri Lake'
+          '✓ 3 nights in Kaziranga National Park',
+          '✓ Multiple jeep and elephant safaris',
+          '✓ Wildlife photography workshops'
         ]
-      : [
-          '✓ 1 night Shillong\'s charming hills',
-          '✓ 2 nights scenic Cherrapunjee',
-          '✓ 1 night by the crystal waters of Dawki'
-        ],
+      : (isTawang 
+        ? [
+            '✓ 2 nights in Tawang at high altitude',
+            '✓ 1 night in Bomdila mountain town',
+            '✓ Visit Sela Pass and Madhuri Lake'
+          ]
+        : [
+            '✓ 1 night Shillong\'s charming hills',
+            '✓ 2 nights scenic Cherrapunjee',
+            '✓ 1 night by the crystal waters of Dawki'
+          ]),
     image
   }))
 }
@@ -246,6 +255,57 @@ export const tawangItinerary: ItineraryDay[] = [
     highlights: [
       "Long scenic ride back through mountains",
       "Stop at viewpoints for photography",
+      "Farewell dinner and trip reflections"
+    ],
+    image: '/images/back.png'
+  }
+]
+
+export const kazirangaItinerary: ItineraryDay[] = [
+  {
+    day: 1,
+    title: "Arrival in Guwahati",
+    location: "Guwahati, Assam",
+    distance: "0 km",
+    highlights: [
+      "Airport pickup & hotel check-in",
+      "Welcome dinner with local Assamese cuisine",
+      "Bike allocation & safety briefing"
+    ],
+    image: '/images/airport.avif'
+  },
+  {
+    day: 2,
+    title: "Guwahati to Kaziranga",
+    location: "Kaziranga National Park",
+    distance: "220 km",
+    highlights: [
+      "Scenic ride through Assam countryside",
+      "Check-in at wildlife resort near Kaziranga",
+      "Evening nature walk and bird watching"
+    ],
+    image: '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg'
+  },
+  {
+    day: 3,
+    title: "Kaziranga Wildlife Safari",
+    location: "Kaziranga National Park",
+    distance: "50 km",
+    highlights: [
+      "Early morning jeep safari in Central Range",
+      "Spot one-horned rhinoceros and wild elephants",
+      "Afternoon elephant safari for closer wildlife experience"
+    ],
+    image: '/images/sides.avif'
+  },
+  {
+    day: 4,
+    title: "Return to Guwahati",
+    location: "Guwahati",
+    distance: "220 km",
+    highlights: [
+      "Morning visit to Kaziranga Orchid Park",
+      "Leisurely ride back to Guwahati",
       "Farewell dinner and trip reflections"
     ],
     image: '/images/back.png'

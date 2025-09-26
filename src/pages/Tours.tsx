@@ -11,9 +11,9 @@ import FAQSection from '../components/ui/FAQSection'
 import Button from '../components/ui/Button'
 import InclusionCard from '../components/ui/InclusionCard'
 import ItineraryItem from '../components/ui/ItineraryItem'
-import { meghalayaItinerary, tawangItinerary, getEpicAdventures } from '../data/tours'
+import { meghalayaItinerary, tawangItinerary, kazirangaItinerary, getEpicAdventures } from '../data/tours'
 import { toursFAQCategories } from '../data/faqs'
-import { meghalayaReviews, tawangReviews } from '../data/reviews'
+import { meghalayaReviews, tawangReviews, kazirangaReviews } from '../data/reviews'
 import { useToggle } from '../hooks/useToggle'
 
 export default function Tours() {
@@ -29,13 +29,14 @@ export default function Tours() {
 
   const tourId = id ? parseInt(id) : 1
   const isTawang = tourId === 2
-  const currentItinerary = isTawang ? tawangItinerary : meghalayaItinerary
-  const currentReviews = isTawang ? tawangReviews : meghalayaReviews
-  const currentEpicAdventures = getEpicAdventures(isTawang ? 'tawang' : 'meghalaya')
-  const tourTitle = isTawang ? 'Tawang Bike Trip' : 'Meghalaya Bike Trip'
-  const tourDuration = isTawang ? '7 Days / 6 Nights' : '7 Days / 6 Nights'
-  const tourLocation = isTawang ? 'Starts from Guwahati' : 'Starts from Guwahati'
-  const tourPrice = isTawang ? 55000 : 45000
+  const isKaziranga = tourId === 3
+  const currentItinerary = isKaziranga ? kazirangaItinerary : (isTawang ? tawangItinerary : meghalayaItinerary)
+  const currentReviews = isKaziranga ? kazirangaReviews : (isTawang ? tawangReviews : meghalayaReviews)
+  const currentEpicAdventures = getEpicAdventures(isKaziranga ? 'kaziranga' : (isTawang ? 'tawang' : 'meghalaya'))
+  const tourTitle = isKaziranga ? 'Kaziranga National Park' : (isTawang ? 'Tawang Bike Trip' : 'Meghalaya Bike Trip')
+  const tourDuration = isKaziranga ? '4 Days / 3 Nights' : (isTawang ? '7 Days / 6 Nights' : '7 Days / 6 Nights')
+  const tourLocation = 'Starts from Guwahati'
+  const tourPrice = isKaziranga ? 35000 : (isTawang ? 55000 : 45000)
 
 
 
@@ -54,7 +55,7 @@ export default function Tours() {
               <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 text-xs sm:text-sm text-gray-600">
                 <span><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 inline mr-1" /> {tourDuration}</span>
                 <span><img src="/images/loc.png" alt="Location" className="w-4 h-4 inline mr-1" /> {tourLocation}</span>
-                <span><img src="/images/p.png" alt="People" className="w-4 h-4 inline mr-1" /> Max 12 Riders</span>
+                <span><img src="/images/p.png" alt="People" className="w-4 h-4 inline mr-1" /> Max {isKaziranga ? '8' : '12'} {isKaziranga ? 'Travelers' : 'Riders'}</span>
               </div>
             </div>
             <div className="flex gap-2 flex-shrink-0">
@@ -72,12 +73,17 @@ export default function Tours() {
         <section className="w-full px-4 sm:px-6 lg:px-8 mb-6">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-4">
             <img 
-              src={isTawang ? '/images/tawang/1.JPG' : '/images/tourimage 1.jpg'} 
+              src={isKaziranga ? '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg' : (isTawang ? '/images/tawang/1.JPG' : '/images/tourimage 1.jpg')} 
               alt={`${tourTitle} Main`} 
               className="rounded-md shadow-sm h-64 sm:h-80 lg:h-[560px] w-full lg:flex-1 object-cover" 
             />
             <div className="grid grid-cols-2 gap-4 w-full lg:flex-1">
-              {(isTawang ? [
+              {(isKaziranga ? [
+                '/images/airport.avif',
+                '/images/sides.avif',
+                '/images/root.jpeg',
+                '/images/back.png'
+              ] : (isTawang ? [
                 '/images/tawang/2.JPG',
                 '/images/tawang/3.JPG',
                 '/images/tawang/4.JPG',
@@ -87,7 +93,7 @@ export default function Tours() {
                 '/images/tourimage 3.jpg', 
                 '/images/tourmage 4.jpg',
                 '/images/tourimage 5.jpg'
-              ]).map((image, i) => (
+              ])).map((image, i) => (
                 <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} loading="lazy" className="rounded-md shadow-sm h-32 sm:h-40 lg:h-[270px] w-full object-cover" />
               ))}
             </div>
@@ -97,7 +103,7 @@ export default function Tours() {
         <TourInfoCards 
           cards={[
             { icon: '/images/122.png', title: 'Duration', value: tourDuration },
-            { icon: '/images/133.png', title: 'Ride Type', value: 'Motorcycle' },
+            { icon: '/images/133.png', title: 'Trip Type', value: isKaziranga ? 'Wildlife Safari' : 'Motorcycle' },
             { icon: '/images/144.png', title: 'Safety Level', value: 'Moderate' }
           ]}
           price={tourPrice}
@@ -106,8 +112,8 @@ export default function Tours() {
         {/* Adventure Itinerary */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl text-gray-900 mb-4 font-bold">7-Day Adventure Itinerary</h2>
-          <p className="text-gray-600 mb-8">Every day brings new adventure through {isTawang ? 'Tawang\'s majestic mountains and high-altitude passes' : 'Meghalaya\'s stunning landscape'}</p>
+            <h2 className="text-3xl text-gray-900 mb-4 font-bold">{isKaziranga ? '4-Day Wildlife Adventure' : '7-Day Adventure Itinerary'}</h2>
+          <p className="text-gray-600 mb-8">Every day brings new adventure through {isKaziranga ? 'Kaziranga\'s wildlife paradise and natural beauty' : (isTawang ? 'Tawang\'s majestic mountains and high-altitude passes' : 'Meghalaya\'s stunning landscape')}</p>
             <div className="space-y-4">
               {currentItinerary.map((item) => (
                 <ItineraryItem 

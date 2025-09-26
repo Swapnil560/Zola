@@ -65,3 +65,70 @@ export const toursFAQCategories: FAQCategory[] = [
     ]
   }
 ]
+
+export const aboutFAQCategories: FAQCategory[] = [
+  {
+    category: '1. Booking & Reservations',
+    questions: [
+      { question: 'How do I book a ride?', answer: 'Book online or via phone.' },
+      { question: 'Can I book on the same day?', answer: 'Yes, if available.' },
+      { question: 'Do I need a driving license?', answer: 'Yes, a valid license is required.' },
+      { question: 'Can I modify or cancel my booking?', answer: 'Yes, bookings can be modified or canceled up to 24 hours before pickup. Cancellation charges may apply.' }
+    ]
+  },
+  {
+    category: '2. Payments and Pricing',
+    questions: [
+      { question: 'Are there any hidden charges?', answer: 'No hidden charges.' },
+      { question: 'Is fuel included in the rental cost?', answer: 'No, fuel is not included.' },
+      { question: 'Do you charge a security deposit?', answer: 'Yes, a refundable deposit is required.' },
+      { question: 'What payment methods are accepted?', answer: 'We accept UPI, credit/debit cards, net banking, and cash at pickup.' }
+    ]
+  },
+  {
+    category: '3. Vehicle Use & Policies',
+    questions: [
+      { question: 'Is there a kilometer limit?', answer: 'Yes, 100 km per day included.' },
+      { question: 'Can I take the vehicle outside Guwahati?', answer: 'Yes, with prior approval.' },
+      { question: 'Are helmets and safety gear included?', answer: 'Yes, helmets and gear are provided.' },
+      { question: 'Can multiple people drive the same rental car?', answer: 'Yes, if all drivers present valid licenses at the time of booking.' }
+    ]
+  },
+  {
+    category: '4. Safety & Support',
+    questions: [
+      { question: 'Are the vehicles insured?', answer: 'Yes, all vehicles are insured.' },
+      { question: 'What happens in case of a breakdown?', answer: 'We provide roadside assistance.' },
+      { question: 'Do you offer child seats or extra accessories?', answer: 'Yes, available upon request.' },
+      { question: 'How can I contact support?', answer: 'Our customer support team is available 24/7 through phone, WhatsApp, and email.' }
+    ]
+  }
+]
+
+export const servicesFAQCategories: FAQCategory[] = [
+  {
+    category: '1. Reservation Guide',
+    questions: [
+      { 
+        question: 'What are the documents required to rent a self drive?', 
+        answer: 'Guest need to provide a soft copy of his or her driving licence and Aadhaar card. Our team will verify it and proceed further.' 
+      },
+      { 
+        question: 'Where do I need to drop the self drive car or bike?', 
+        answer: 'Guest has the liberty to choose their own pickup and drop-off location. A convenience fee is applicable.' 
+      },
+      { 
+        question: 'Can my friend receive the car in my absence?', 
+        answer: 'Yes, of course. In the absence of the guest, his or her friend who has a valid driving licence and Aadhaar card can receive the car.' 
+      },
+      { 
+        question: 'Any charges for extra km?', 
+        answer: 'In case of self-drive we don\'t charge for extra kms. But in cab rentals extra kms are chargeable after it crosses the km limit. It varies from cab to destination.' 
+      },
+      { 
+        question: 'Do we need to pay tyre punctures?', 
+        answer: 'No, in case of cab tyre damages are upon the guest, but yes, in case of self-drive tyre damages are upon the guest.' 
+      }
+    ]
+  }
+]

@@ -55,7 +55,7 @@ export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps)
         </div>
         <button 
           onClick={() => {
-            if (tour.id === 1 || tour.id === 2) {
+            if (tour.id === 1 || tour.id === 2 || tour.id === 3) {
               navigate(`/tours/${tour.id}`)
               window.scrollTo(0, 0)
             } else if (tour.id >= 4 && tour.id <= 6) {

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 interface NavItem {
   label: string
@@ -17,10 +17,10 @@ interface HeaderProps {
 
 const defaultNavItems: NavItem[] = [
   { label: 'Home', to: '/' },
-  { label: 'Services', href: '#' },
-  { label: 'Tours', href: '#popular-tours' },
-  { label: 'About', href: '#' },
-  { label: 'Terms', href: '#' }
+  { label: 'Services', to: '/services' },
+  { label: 'Tours', href: '/#popular-tours' },
+  { label: 'About', to: '/about' },
+  { label: 'Terms & Conditions', to: '/terms-conditions' }
 ]
 
 export default function Header({ 
@@ -31,6 +31,27 @@ export default function Header({
   navItems = defaultNavItems,
   contactText = 'Contact Us'
 }: HeaderProps) {
+  const navigate = useNavigate()
+  const location = useLocation()
+  
+  const handleToursClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (location.pathname === '/') {
+      document.getElementById('popular-tours')?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById('popular-tours')?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }
+  
+  const handleNavClick = (to: string) => {
+    navigate(to)
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  }
   return (
     <header className="fixed top-0 w-full bg-gray-100 shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -42,9 +63,13 @@ export default function Header({
           <nav className="hidden sm:flex space-x-1 md:space-x-4 lg:space-x-8 text-xs md:text-base">
             {navItems.map((item, index) => (
               item.to ? (
-                <Link key={index} to={item.to} className="text-black font-bold hover:text-gray-700">
+                <button key={index} onClick={() => handleNavClick(item.to!)} className="text-black font-bold hover:text-gray-700">
                   {item.label}
-                </Link>
+                </button>
+              ) : item.label === 'Tours' ? (
+                <button key={index} onClick={handleToursClick} className="text-black font-bold hover:text-gray-700">
+                  {item.label}
+                </button>
               ) : (
                 <a key={index} href={item.href} className="text-black font-bold hover:text-gray-700">
                   {item.label}
@@ -75,9 +100,13 @@ export default function Header({
             <nav className="flex flex-col space-y-4">
               {navItems.map((item, index) => (
                 item.to ? (
-                  <Link key={index} to={item.to} className="text-black font-bold hover:text-gray-700">
+                  <button key={index} onClick={() => handleNavClick(item.to!)} className="text-black font-bold hover:text-gray-700">
                     {item.label}
-                  </Link>
+                  </button>
+                ) : item.label === 'Tours' ? (
+                  <button key={index} onClick={handleToursClick} className="text-black font-bold hover:text-gray-700">
+                    {item.label}
+                  </button>
                 ) : (
                   <a key={index} href={item.href} className="text-black font-bold hover:text-gray-700">
                     {item.label}

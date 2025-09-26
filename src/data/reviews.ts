@@ -29,3 +29,12 @@ export const tawangReviews: Review[] = [
   { review: "6 days of pure adventure! Tawang's monasteries and landscapes are magical.", name: "Abhishek" },
   { review: "Best mountain biking experience ever! Tawang's culture and nature are amazing.", name: "Pooja" }
 ]
+
+export const kazirangaReviews: Review[] = [
+  { review: "The Kaziranga safari was an unforgettable wildlife experience! Seeing rhinos up close was incredible!", name: "Arjun" },
+  { review: "The jeep ride through the park's lush greenery was breathtaking - a true nature lover's dream!", name: "Sneha" },
+  { review: "Best organized safari tour ever! The guides were knowledgeable about every species in Kaziranga!", name: "Vikram" },
+  { review: "The elephant ride and spotting tigers made the trip to Kaziranga absolutely amazing!", name: "Kavya" },
+  { review: "Amazing adventure through Kaziranga's rich biodiversity. Highly recommended for wildlife enthusiasts!", name: "Rahul" },
+  { review: "The safari exceeded all expectations. Kaziranga's beauty and wildlife are truly remarkable!", name: "Ananya" }
+]
