@@ -8,29 +8,6 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
   const [pickupDateTime, setPickupDateTime] = useState('')
   const [dropoffDateTime, setDropoffDateTime] = useState('')
-  const [pickupLocation, setPickupLocation] = useState('')
-  const [dropoffLocation, setDropoffLocation] = useState('')
-  
-  const getLocationOptions = (type: string) => {
-    switch(type) {
-      case 'Bike':
-        return ['Guwahati Airport', 'Guwahati Railway Station', 'Paltan Bazaar', 'Fancy Bazaar', 'Zoo Road']
-      case 'Scooty':
-        return ['City Center', 'University Area', 'Shopping Mall', 'Residential Complex', 'Metro Station']
-      case 'Car':
-        return ['Airport Terminal', 'Hotel Pickup', 'Railway Station', 'Business District', 'Tourist Spots']
-      default:
-        return ['Guwahati Airport', 'Guwahati Railway Station', 'Paltan Bazaar', 'Fancy Bazaar', 'Zoo Road']
-    }
-  }
-  
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab)
-    setPickupLocation('')
-    setDropoffLocation('')  
-    setPickupDateTime('')
-    setDropoffDateTime('')
-  }
 
   return (
     <section className="relative h-[750px] bg-cover bg-center pt-16 mx-4 sm:mx-6 lg:mx-8 rounded-lg overflow-hidden" style={{backgroundImage: 'url("/images/Hero.png")'}}>
@@ -50,7 +27,7 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                     {['Bike', 'Scooty', 'Car'].map((tab) => (
                       <button
                         key={tab}
-                        onClick={() => handleTabChange(tab)}
+                        onClick={() => setActiveTab(tab)}
                         className={`rounded-lg font-medium flex items-center justify-center py-2 px-4 text-sm border border-gray-400  ${
                           activeTab === tab ? 'text-white' : 'bg-gray-100 text-gray-700'
                         }`}
@@ -68,32 +45,24 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/loc.png" alt="Location" className="w-4 h-4 mr-1 object-contain" /> Pickup</label>
-                      <input 
-                        list="pickup-locations" 
-                        placeholder="Select Pickup Location" 
-                        value={pickupLocation}
-                        onChange={(e) => setPickupLocation(e.target.value)}
-                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
-                      />
+                      <input list="pickup-locations" placeholder="Select Pickup Location" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
                       <datalist id="pickup-locations">
-                        {getLocationOptions(activeTab).map((location) => (
-                          <option key={location} value={location} />
-                        ))}
+                        <option value="Guwahati Airport" />
+                        <option value="Guwahati Railway Station" />
+                        <option value="Paltan Bazaar" />
+                        <option value="Fancy Bazaar" />
+                        <option value="Zoo Road" />
                       </datalist>
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/loc.png" alt="Location" className="w-4 h-4 mr-1 object-contain" /> Drop-off</label>
-                      <input 
-                        list="dropoff-locations" 
-                        placeholder="Select Drop-off Location" 
-                        value={dropoffLocation}
-                        onChange={(e) => setDropoffLocation(e.target.value)}
-                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
-                      />
+                      <input list="dropoff-locations" placeholder="Select Drop-off Location" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
                       <datalist id="dropoff-locations">
-                        {getLocationOptions(activeTab).map((location) => (
-                          <option key={location} value={location} />
-                        ))}
+                        <option value="Guwahati Airport" />
+                        <option value="Guwahati Railway Station" />
+                        <option value="Paltan Bazaar" />
+                        <option value="Fancy Bazaar" />
+                        <option value="Zoo Road" />
                       </datalist>
                     </div>
                   </div>
@@ -101,21 +70,21 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Pickup Date and Time</label>
                       <input 
-                        type="datetime-local" 
+                        type={window.innerWidth >= 640 ? "datetime-local" : "text"}
+                        placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy --:-- --"}
                         value={pickupDateTime}
                         onChange={(e) => setPickupDateTime(e.target.value)}
                         className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
-                        min={new Date().toISOString().slice(0, 16)}
                       />
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/blackc.png" alt="Clock" className="w-4 h-4 mr-1 object-contain" /> Drop-off Date and Time</label>
                       <input 
-                        type="datetime-local" 
+                        type={window.innerWidth >= 640 ? "datetime-local" : "text"}
+                        placeholder={window.innerWidth >= 640 ? "" : "dd-mm-yyyy --:-- --"}
                         value={dropoffDateTime}
                         onChange={(e) => setDropoffDateTime(e.target.value)}
                         className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
-                        min={pickupDateTime || new Date().toISOString().slice(0, 16)}
                       />
                     </div>
                   </div>
