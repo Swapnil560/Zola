@@ -29,31 +29,35 @@ export default function BookingStep(props: BookingStepProps) {
   const dropoffLocations = ['Hotel Radisson Blu', 'Guwahati Airport', 'Guwahati Railway Station', 'Paltan Bazaar']
 
   if (step === 1) return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
       <StepHeader icon="📅" title="Select Your Dates" description="Choose your pickup and drop-off dates" gradientFrom="blue" gradientTo="purple" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <FormInput label="Pick-up Date" type="date" value={pickupDate} onChange={setPickupDate} focusColor="blue" />
         <FormInput label="Drop-off Date" type="date" value={dropoffDate} onChange={setDropoffDate} focusColor="blue" />
       </div>
       <InfoCard icon="ℹ️" message="Total Duration: 5 days • Daily Rate: ₹4,500" bgColor="bg-blue-50" textColor="text-blue-800" />
-      <NavigationButtons onPrevious={onPrevious} onNext={onNext} previousDisabled={true} nextText="Continue to Locations →" />
+      <div className="mt-auto">
+        <NavigationButtons onPrevious={onPrevious} onNext={onNext} previousDisabled={true} nextText="Continue to Locations →" />
+      </div>
     </div>
   )
 
   if (step === 2) return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
       <StepHeader icon="📍" title="Choose Locations" description="Select pickup and drop-off locations" gradientFrom="green" gradientTo="teal" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <FormInput label="Pick-up Location" type="select" value={pickupLocation} onChange={setPickupLocation} options={locations} focusColor="green" />
-        <FormInput label="Drop-off Location" type="select" value={dropoffLocation} onChange={setDropoffLocation} options={dropoffLocations} focusColor="green" />
+        <FormInput label="Pick-up Location" type="text" value={pickupLocation} onChange={setPickupLocation} options={locations} focusColor="green" placeholder="Select or enter pickup location" />
+        <FormInput label="Drop-off Location" type="text" value={dropoffLocation} onChange={setDropoffLocation} options={dropoffLocations} focusColor="green" placeholder="Select or enter drop-off location" />
       </div>
       <InfoCard icon="🚗" message="Free pickup & drop-off within 10km radius" bgColor="bg-green-50" textColor="text-green-800" />
-      <NavigationButtons onPrevious={onPrevious} onNext={onNext} nextText="Continue to Add-ons →" />
+      <div className="mt-auto">
+        <NavigationButtons onPrevious={onPrevious} onNext={onNext} nextText="Continue to Add-ons →" />
+      </div>
     </div>
   )
 
   if (step === 3) return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
       <StepHeader icon="🛡️" title="Select Add-ons" description="Enhance your rental experience" gradientFrom="purple" gradientTo="pink" />
       <div className="space-y-4 mb-8">
         <AddOnItem icon="🛡️" title="Safety Helmet" description="Premium quality helmet included" isFree={true} />
@@ -66,12 +70,14 @@ export default function BookingStep(props: BookingStepProps) {
           <span className="font-bold text-lg">₹{(extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)}</span>
         </div>
       </div>
-      <NavigationButtons onPrevious={onPrevious} onNext={onNext} nextText="Review Booking →" />
+      <div className="mt-auto">
+        <NavigationButtons onPrevious={onPrevious} onNext={onNext} nextText="Review Booking →" />
+      </div>
     </div>
   )
 
   if (step === 4) return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
       <StepHeader icon="📋" title="Review Booking" description="Confirm your rental details" gradientFrom="orange" gradientTo="red" />
       <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 mb-6">
         <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
@@ -98,6 +104,10 @@ export default function BookingStep(props: BookingStepProps) {
             <span className="text-gray-600">Base Price (5 days)</span>
             <span className="font-semibold text-gray-900">₹22,500</span>
           </div>
+          <div className="flex justify-between items-center py-2 border-b border-gray-100">
+            <span className="text-gray-600">Fuel</span>
+            <span className="font-semibold text-green-600">Included</span>
+          </div>
           {extraHelmet.value && (
             <div className="flex justify-between items-center py-2 border-b border-gray-100">
               <span className="text-gray-600">Extra Helmet</span>
@@ -117,12 +127,14 @@ export default function BookingStep(props: BookingStepProps) {
         </div>
       </div>
       <InfoCard icon="⚡" message="Limited Availability: Only 2 bikes left for this weekend!" bgColor="bg-red-50" textColor="text-red-700" />
-      <NavigationButtons onPrevious={onPrevious} onNext={onNext} nextText="Proceed to Payment →" />
+      <div className="mt-auto">
+        <NavigationButtons onPrevious={onPrevious} onNext={onNext} nextText="Proceed to Payment →" />
+      </div>
     </div>
   )
 
   if (step === 5) return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
       <StepHeader icon="💳" title="Secure Payment" description="Complete your booking safely" gradientFrom="green" gradientTo="emerald" />
       <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 mb-6">
         <h3 className="text-lg font-bold text-gray-900 mb-4">Choose Payment Method</h3>
@@ -135,9 +147,9 @@ export default function BookingStep(props: BookingStepProps) {
           ))}
         </div>
         <InfoCard icon="🔒" message="SSL Secured • 256-bit Encryption • Safe Checkout" bgColor="bg-green-50" textColor="text-green-700" />
-        <Button variant="primary" size="lg" className="w-full">🔒 Confirm & Pay ₹{22500 + (extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)}</Button>
+        <Button variant="primary" size="lg" className="w-full mb-4">🔒 Confirm & Pay ₹{22500 + (extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)}</Button>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 justify-between">
+      <div className="mt-auto flex flex-col sm:flex-row gap-4 justify-between">
         <Button variant="primary" onClick={onPrevious}>← Previous</Button>
         <div className="text-center text-gray-500 text-sm"><p>By proceeding, you agree to our Terms & Conditions</p></div>
       </div>

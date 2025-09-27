@@ -13,9 +13,9 @@ export default function BookingSteps({ currentStep }: BookingStepsProps) {
 
   return (
     <section className="max-w-6xl mx-auto p-3 sm:p-6 mt-8 lg:mt-8 bg-gray-50">
-      <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-3 lg:gap-6 mb-4 sm:mb-6 px-1">
+      <div className="flex justify-between items-center mb-4 sm:mb-6 px-1">
         {steps.map((step) => (
-          <div key={step.num} className="flex flex-col items-center text-center min-w-0 flex-shrink-0 w-16 sm:w-20">
+          <div key={step.num} className="flex flex-col items-center text-center flex-1">
             <div className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center font-bold mb-1 transition-all duration-300 text-sm sm:text-base ${currentStep === step.num ? 'text-white shadow-lg transform scale-105' : currentStep > step.num ? 'text-white' : 'bg-gray-200 text-gray-600'}`} style={currentStep >= step.num ? {backgroundColor: '#00473E'} : {}}>
               {currentStep > step.num ? '✓' : step.icon}
             </div>

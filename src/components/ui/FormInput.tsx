@@ -2,14 +2,15 @@
 
 interface FormInputProps {
   label: string
-  type: 'date' | 'select'
+  type: 'date' | 'select' | 'text'
   value: string
   onChange: (value: string) => void
   options?: string[]
   focusColor?: string
+  placeholder?: string
 }
 
-export default function FormInput({ label, type, value, onChange, options, focusColor = 'blue' }: FormInputProps) {
+export default function FormInput({ label, type, value, onChange, options, focusColor = 'blue', placeholder }: FormInputProps) {
 
   const focusClasses = `focus:border-${focusColor}-500 focus:ring-2 focus:ring-${focusColor}-200`
   
@@ -58,7 +59,7 @@ export default function FormInput({ label, type, value, onChange, options, focus
               </button>
             </div>
           </div>
-        ) : (
+        ) : type === 'select' ? (
           <select 
             value={value}
             onChange={(e) => onChange(e.target.value)}
@@ -68,8 +69,24 @@ export default function FormInput({ label, type, value, onChange, options, focus
               <option key={option} value={option}>{option}</option>
             ))}
           </select>
+        ) : (
+          <input 
+            list={`${label.toLowerCase().replace(/\s+/g, '-')}-options`}
+            type="text"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder || `Enter ${label.toLowerCase()}`}
+            className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${focusClasses} transition-all duration-300`}
+          />
         )}
       </div>
+      {type === 'text' && options && (
+        <datalist id={`${label.toLowerCase().replace(/\s+/g, '-')}-options`}>
+          {options.map((option) => (
+            <option key={option} value={option} />
+          ))}
+        </datalist>
+      )}
     </div>
   )
 }
