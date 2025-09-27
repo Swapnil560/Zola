@@ -14,7 +14,7 @@ export const popularTours: Tour[] = [
       '✓ 2 nights scenic Cherrapunjee',
       '✓ 1 night by the crystal waters of Dawki'
     ],
-    image: '/images/5-day meghalay escape.png'
+    image: '/images/Meghalaya/river.jpeg'
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export const popularTours: Tour[] = [
       '✓ 3 nights in Tawang at high altitude',
       '✓ 1 night in Bomdila mountain town'
     ],
-    image: '/images/tourmage 4.jpg'
+    image: '/images/tawang/B.jpeg'
   },
   {
     id: 3,
@@ -185,7 +185,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Airport pickup",
       "Bike allocation & briefing"
     ],
-    image: '/images/airport.avif'
+    image: '/images/tawang/tezpur.jpeg'
   },
   {
     day: 2,
@@ -197,7 +197,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Cross into Arunachal Pradesh",
       "Reach the beautiful valley town of Dirang"
     ],
-    image: '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg'
+    image: '/images/tawang/dirang.jpeg'
   },
   {
     day: 3,
@@ -209,7 +209,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Visit Sela Lake and Jaswant Garh War Memorial",
       "Arrive in the mystical town of Tawang"
     ],
-    image: '/images/sides.avif'
+    image: '/images/tawang/B.jpeg'
   },
   {
     day: 4,
@@ -221,7 +221,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Explore Urgelling Monastery",
       "Visit Tawang War Memorial and local markets"
     ],
-    image: '/images/stoC.jpg'
+    image: '/images/tawang/river.jpeg'
   },
   {
     day: 5,
@@ -233,7 +233,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Explore the famous Madhuri Lake",
       "Experience high altitude adventure"
     ],
-    image: '/images/root.jpeg'
+    image: '/images/tawang/bum la pass.jpeg'
   },
   {
     day: 6,
@@ -245,7 +245,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Visit Bomdila Monastery",
       "Enjoy mountain views and local culture"
     ],
-    image: '/images/nohkalikai-falls.jpg'
+    image: '/images/tawang/Bomdila.jpeg'
   },
   {
     day: 7,
@@ -257,7 +257,7 @@ export const tawangItinerary: ItineraryDay[] = [
       "Stop at viewpoints for photography",
       "Farewell dinner and trip reflections"
     ],
-    image: '/images/back.png'
+    image: '/images/tawang/road.jpeg'
   }
 ]
 

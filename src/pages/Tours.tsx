@@ -71,30 +71,30 @@ export default function Tours() {
 
         {/* Image Grid Layout */}
         <section className="w-full px-4 sm:px-6 lg:px-8 mb-6">
-          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-4">
+          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-2 sm:gap-4">
             <img 
-              src={isKaziranga ? '/images/Kaziranga/k2.jpg' : (isTawang ? '/images/tawang/tawang1.jpg' : '/images/tourimage 1.jpg')} 
+              src={isKaziranga ? '/images/Kaziranga/k2.jpg' : (isTawang ? '/images/tawang/B.jpeg' : '/images/Meghalaya/main.jpeg')} 
               alt={`${tourTitle} Main`} 
-              className="rounded-md shadow-sm h-64 sm:h-80 lg:h-[560px] w-full lg:w-3/5 object-cover" 
+              className="rounded-md shadow-sm h-48 sm:h-64 md:h-80 lg:h-[560px] w-full lg:w-3/5 object-cover" 
             />
-            <div className="grid grid-cols-2 gap-4 w-full lg:flex-1">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full lg:flex-1">
               {(isKaziranga ? [
                 '/images/Kaziranga/k1.png',
                 '/images/Kaziranga/k3.jpg',
                 '/images/Kaziranga/k4.jpg',
                 '/images/Kaziranga/k5.jpg'
               ] : (isTawang ? [
-                '/images/tawang/t2.jpg',
-                '/images/tawang/t3.jpg',
-                '/images/tawang/t4.jpg',
-                '/images/tawang/t5.jpg'
+                '/images/tawang/mountain.jpeg',
+                '/images/tawang/road.jpeg',
+                '/images/tawang/river.jpeg',
+                '/images/tawang/waterfall.jpeg'
               ] : [
-                '/images/Tourimage 2.jpg',
-                '/images/tourimage 3.jpg', 
-                '/images/tourmage 4.jpg',
-                '/images/tourimage 5.jpg'
+                '/images/Meghalaya/river.jpeg',
+                '/images/Meghalaya/waterfall.jpeg',
+                '/images/Meghalaya/bike.jpeg',
+                '/images/Meghalaya/2ppl.jpeg'
               ])).map((image, i) => (
-                <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} loading="lazy" className="rounded-md shadow-sm h-32 sm:h-40 lg:h-[270px] w-full object-cover" />
+                <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} loading="lazy" className="rounded-md shadow-sm h-24 sm:h-32 md:h-40 lg:h-[270px] w-full object-cover" />
               ))}
             </div>
           </div>
