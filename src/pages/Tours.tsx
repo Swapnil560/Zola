@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Header from '../components/ui/Header'
@@ -38,7 +38,33 @@ export default function Tours() {
   const tourLocation = 'Starts from Guwahati'
   const tourPrice = isKaziranga ? 35000 : (isTawang ? 55000 : 45000)
 
-
+  // Preload images
+  useEffect(() => {
+    const imagesToPreload = isKaziranga ? [
+      '/images/Kaziranga/k2.jpg',
+      '/images/Kaziranga/k1.png',
+      '/images/Kaziranga/k3.jpg',
+      '/images/Kaziranga/k4.jpg',
+      '/images/Kaziranga/k5.jpg'
+    ] : (isTawang ? [
+      '/images/tawang/B.jpeg',
+      '/images/tawang/mountain.jpeg',
+      '/images/tawang/road.jpeg',
+      '/images/tawang/river.jpeg',
+      '/images/tawang/waterfall.jpeg'
+    ] : [
+      '/images/Meghalaya/main.jpeg',
+      '/images/Meghalaya/river.jpeg',
+      '/images/Meghalaya/waterfall.jpeg',
+      '/images/Meghalaya/bike.jpeg',
+      '/images/Meghalaya/2ppl.jpeg'
+    ])
+    
+    imagesToPreload.forEach(src => {
+      const img = new Image()
+      img.src = src
+    })
+  }, [isKaziranga, isTawang])
 
   return (
     <div className="min-h-screen bg-white">
@@ -76,6 +102,8 @@ export default function Tours() {
               src={isKaziranga ? '/images/Kaziranga/k2.jpg' : (isTawang ? '/images/tawang/B.jpeg' : '/images/Meghalaya/main.jpeg')} 
               alt={`${tourTitle} Main`} 
               className="rounded-md shadow-sm h-48 sm:h-64 md:h-80 lg:h-[560px] w-full lg:w-3/5 object-cover" 
+              loading="eager"
+              fetchPriority="high"
             />
             <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full lg:flex-1">
               {(isKaziranga ? [
