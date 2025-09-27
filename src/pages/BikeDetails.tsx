@@ -39,8 +39,8 @@ export default function BikeDetails() {
     window.scrollTo({ top: 0 })
   }, [])
 
-  const [pickupDate, setPickupDate] = useState('2024-12-15')
-  const [dropoffDate, setDropoffDate] = useState('2024-12-20')
+  const [pickupDate, setPickupDate] = useState('')
+  const [dropoffDate, setDropoffDate] = useState('')
   const [pickupLocation, setPickupLocation] = useState('Guwahati Airport')
   const [dropoffLocation, setDropoffLocation] = useState('Hotel Radisson Blu')
   const extraHelmet = useToggle()

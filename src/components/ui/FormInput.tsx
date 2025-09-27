@@ -27,14 +27,37 @@ export default function FormInput({ label, type, value, onChange, options, focus
       <label className="block text-gray-700 text-sm font-semibold mb-2">{label}</label>
       <div className="relative">
         {type === 'date' ? (
-          <input 
-            type="text"
-            value={value}
-            onChange={(e) => onChange(formatDateInput(e.target.value))}
-            placeholder="DD/MM/YYYY"
-            maxLength={10}
-            className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${focusClasses} transition-all duration-300`}
-          />
+          <div className="relative">
+            <input 
+              type="text"
+              value={value}
+              onChange={(e) => onChange(formatDateInput(e.target.value))}
+              placeholder="dd-mm-yyyy"
+              maxLength={10}
+              className={`w-full border-2 border-gray-200 rounded-xl p-4 pr-12 text-gray-900 ${focusClasses} transition-all duration-300`}
+            />
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+              <input 
+                type="date"
+                onChange={(e) => {
+                  if (e.target.value) {
+                    const date = new Date(e.target.value)
+                    const day = String(date.getDate()).padStart(2, '0')
+                    const month = String(date.getMonth() + 1).padStart(2, '0')
+                    const year = date.getFullYear()
+                    onChange(`${day}/${month}/${year}`)
+                  }
+                }}
+                className="absolute opacity-0 w-6 h-6 cursor-pointer"
+              />
+              <button 
+                type="button"
+                className="text-gray-500 hover:text-gray-700 text-lg"
+              >
+                📅
+              </button>
+            </div>
+          </div>
         ) : (
           <select 
             value={value}

@@ -6,7 +6,6 @@ interface HeroSectionProps {
 
 export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
-
   
   // Separate form data for each vehicle type
   const [formData, setFormData] = useState({
@@ -26,8 +25,6 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
       }
     }))
   }
-
-
 
   const formatDateInput = (value: string) => {
     const numbers = value.replace(/\D/g, '')
@@ -142,15 +139,7 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                           >
                             📅
                           </button>
-                          {currentData.pickupDate && (
-                            <button 
-                              onClick={() => updateFormData('pickupDate', '')}
-                              className="text-gray-500 hover:text-gray-700"
-                              type="button"
-                            >
-                              ✕
-                            </button>
-                          )}
+
                         </div>
                       </div>
                     </div>
@@ -188,15 +177,7 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                           >
                             📅
                           </button>
-                          {currentData.dropoffDate && (
-                            <button 
-                              onClick={() => updateFormData('dropoffDate', '')}
-                              className="text-gray-500 hover:text-gray-700"
-                              type="button"
-                            >
-                              ✕
-                            </button>
-                          )}
+
                         </div>
                       </div>
                     </div>
