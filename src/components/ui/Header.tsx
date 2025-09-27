@@ -87,7 +87,7 @@ export default function Header({
             <span className="w-4 h-0.5 bg-green-600 rounded"></span>
           </button>
           
-          <button className="hidden sm:flex text-black px-1 sm:px-2 md:px-6 py-1 sm:py-2 rounded-lg sm:rounded-xl items-center hover:scale-105 hover:shadow-lg transition-all duration-300 text-xs sm:text-sm md:text-base whitespace-nowrap font-medium bg-gray-300">
+          <button className="hidden sm:flex text-white px-1 sm:px-2 md:px-6 py-1 sm:py-2 rounded-lg sm:rounded-xl items-center hover:scale-105 hover:shadow-lg transition-all duration-300 text-xs sm:text-sm md:text-base whitespace-nowrap font-medium" style={{backgroundColor: '#00473E'}}>
             <img src="/images/tel.png" alt="Phone" className="w-4 h-4 mr-1" />
             <span className="hidden sm:inline">{contactText}</span>
           </button>
@@ -113,7 +113,7 @@ export default function Header({
                   </a>
                 )
               ))}
-              <button className="text-black px-4 py-2 rounded-lg flex items-center justify-center bg-gray-400">
+              <button className="text-white px-4 py-2 rounded-lg flex items-center justify-center" style={{backgroundColor: '#00473E'}}>
                 <img src="/images/tel.png" alt="Phone" className="w-4 h-4 mr-2" />
                 {contactText}
               </button>

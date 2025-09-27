@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+
 
 interface FormInputProps {
   label: string
@@ -10,15 +10,10 @@ interface FormInputProps {
 }
 
 export default function FormInput({ label, type, value, onChange, options, focusColor = 'blue' }: FormInputProps) {
-  const [isMobile, setIsMobile] = useState(false)
+
   const focusClasses = `focus:border-${focusColor}-500 focus:ring-2 focus:ring-${focusColor}-200`
   
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+
 
   const formatDateInput = (value: string) => {
     const numbers = value.replace(/\D/g, '')
@@ -33,13 +28,11 @@ export default function FormInput({ label, type, value, onChange, options, focus
       <div className="relative">
         {type === 'date' ? (
           <input 
-            type={isMobile ? "text" : "date"}
+            type="text"
             value={value}
-            onChange={(e) => onChange(isMobile ? formatDateInput(e.target.value) : e.target.value)}
-            placeholder={isMobile ? "DD/MM/YYYY" : undefined}
-            maxLength={isMobile ? 10 : undefined}
-            min={!isMobile ? "2024-01-01" : undefined}
-            max={!isMobile ? "2030-12-31" : undefined}
+            onChange={(e) => onChange(formatDateInput(e.target.value))}
+            placeholder="DD/MM/YYYY"
+            maxLength={10}
             className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${focusClasses} transition-all duration-300`}
           />
         ) : (

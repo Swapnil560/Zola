@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface HeroSectionProps {
   isMobileMenuOpen: boolean
@@ -6,16 +6,28 @@ interface HeroSectionProps {
 
 export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
   const [activeTab, setActiveTab] = useState('Bike')
-  const [pickupDateTime, setPickupDateTime] = useState('')
-  const [dropoffDateTime, setDropoffDateTime] = useState('')
-  const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+  
+  // Separate form data for each vehicle type
+  const [formData, setFormData] = useState({
+    Bike: { pickupLocation: '', dropoffLocation: '', pickupDate: '', dropoffDate: '' },
+    Scooty: { pickupLocation: '', dropoffLocation: '', pickupDate: '', dropoffDate: '' },
+    Car: { pickupLocation: '', dropoffLocation: '', pickupDate: '', dropoffDate: '' }
+  })
+  
+  const currentData = formData[activeTab as keyof typeof formData]
+  
+  const updateFormData = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [activeTab]: {
+        ...prev[activeTab as keyof typeof prev],
+        [field]: value
+      }
+    }))
+  }
+
+
 
   const formatDateInput = (value: string) => {
     const numbers = value.replace(/\D/g, '')
@@ -62,7 +74,13 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/loc.png" alt="Location" className="w-4 h-4 mr-1 object-contain" /> Pickup</label>
-                      <input list="pickup-locations" placeholder="Select Pickup Location" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
+                      <input 
+                        list="pickup-locations" 
+                        placeholder="Select Pickup Location" 
+                        value={currentData.pickupLocation}
+                        onChange={(e) => updateFormData('pickupLocation', e.target.value)}
+                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
+                      />
                       <datalist id="pickup-locations">
                         <option value="Guwahati Airport" />
                         <option value="Guwahati Railway Station" />
@@ -73,7 +91,13 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1 block flex items-center"><img src="/images/loc.png" alt="Location" className="w-4 h-4 mr-1 object-contain" /> Drop-off</label>
-                      <input list="dropoff-locations" placeholder="Select Drop-off Location" className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" />
+                      <input 
+                        list="dropoff-locations" 
+                        placeholder="Select Drop-off Location" 
+                        value={currentData.dropoffLocation}
+                        onChange={(e) => updateFormData('dropoffLocation', e.target.value)}
+                        className="border border-gray-400 rounded-lg px-2 sm:px-3 py-2 w-full text-gray-700 text-sm" 
+                      />
                       <datalist id="dropoff-locations">
                         <option value="Guwahati Airport" />
                         <option value="Guwahati Railway Station" />
@@ -91,26 +115,43 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                       </label>
                       <div className="relative">
                         <input 
-                          type={isMobile ? "text" : "date"}
-                          value={pickupDateTime}
-                          onChange={(e) => setPickupDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
-                          placeholder={isMobile ? "DD/MM/YYYY" : undefined}
-                          maxLength={isMobile ? 10 : undefined}
-                          min={!isMobile ? "2024-01-01" : undefined}
-                          max={!isMobile ? "2030-12-31" : undefined}
-                          className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
+                          type="text"
+                          value={currentData.pickupDate}
+                          onChange={(e) => updateFormData('pickupDate', formatDateInput(e.target.value))}
+                          placeholder="DD/MM/YYYY"
+                          maxLength={10}
+                          className="border border-gray-400 rounded-lg px-3 py-3 pr-20 w-full text-gray-700 text-sm touch-manipulation" 
                         />
-                        {isMobile && pickupDateTime && (
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-2">
+                          <input 
+                            type="date"
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                const date = new Date(e.target.value)
+                                const day = String(date.getDate()).padStart(2, '0')
+                                const month = String(date.getMonth() + 1).padStart(2, '0')
+                                const year = date.getFullYear()
+                                updateFormData('pickupDate', `${day}/${month}/${year}`)
+                              }
+                            }}
+                            className="absolute opacity-0 w-6 h-6 cursor-pointer"
+                          />
+                          <button 
+                            type="button"
+                            className="text-gray-500 hover:text-gray-700 text-lg"
+                          >
+                            📅
+                          </button>
+                          {currentData.pickupDate && (
                             <button 
-                              onClick={() => setPickupDateTime('')}
+                              onClick={() => updateFormData('pickupDate', '')}
                               className="text-gray-500 hover:text-gray-700"
                               type="button"
                             >
                               ✕
                             </button>
-                          </div>
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div>
@@ -120,26 +161,43 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
                       </label>
                       <div className="relative">
                         <input 
-                          type={isMobile ? "text" : "date"}
-                          value={dropoffDateTime}
-                          onChange={(e) => setDropoffDateTime(isMobile ? formatDateInput(e.target.value) : e.target.value)}
-                          placeholder={isMobile ? "DD/MM/YYYY" : undefined}
-                          maxLength={isMobile ? 10 : undefined}
-                          min={!isMobile ? "2024-01-01" : undefined}
-                          max={!isMobile ? "2030-12-31" : undefined}
-                          className="border border-gray-400 rounded-lg px-3 py-3 w-full text-gray-700 text-sm touch-manipulation" 
+                          type="text"
+                          value={currentData.dropoffDate}
+                          onChange={(e) => updateFormData('dropoffDate', formatDateInput(e.target.value))}
+                          placeholder="DD/MM/YYYY"
+                          maxLength={10}
+                          className="border border-gray-400 rounded-lg px-3 py-3 pr-20 w-full text-gray-700 text-sm touch-manipulation" 
                         />
-                        {isMobile && dropoffDateTime && (
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-2">
+                          <input 
+                            type="date"
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                const date = new Date(e.target.value)
+                                const day = String(date.getDate()).padStart(2, '0')
+                                const month = String(date.getMonth() + 1).padStart(2, '0')
+                                const year = date.getFullYear()
+                                updateFormData('dropoffDate', `${day}/${month}/${year}`)
+                              }
+                            }}
+                            className="absolute opacity-0 w-6 h-6 cursor-pointer"
+                          />
+                          <button 
+                            type="button"
+                            className="text-gray-500 hover:text-gray-700 text-lg"
+                          >
+                            📅
+                          </button>
+                          {currentData.dropoffDate && (
                             <button 
-                              onClick={() => setDropoffDateTime('')}
+                              onClick={() => updateFormData('dropoffDate', '')}
                               className="text-gray-500 hover:text-gray-700"
                               type="button"
                             >
                               ✕
                             </button>
-                          </div>
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>

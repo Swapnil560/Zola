@@ -284,7 +284,7 @@ export const kazirangaItinerary: ItineraryDay[] = [
       "Check-in at wildlife resort near Kaziranga",
       "Evening nature walk and bird watching"
     ],
-    image: '/images/Shillong-City-1-1536x1024-1-1024x683-2.jpg'
+    image: '/images/Kaziranga/k4.jpg'
   },
   {
     day: 3,
@@ -296,7 +296,7 @@ export const kazirangaItinerary: ItineraryDay[] = [
       "Spot one-horned rhinoceros and wild elephants",
       "Afternoon elephant safari for closer wildlife experience"
     ],
-    image: '/images/sides.avif'
+    image: '/images/Kaziranga/k1.png'
   },
   {
     day: 4,
