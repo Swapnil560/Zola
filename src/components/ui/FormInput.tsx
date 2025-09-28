@@ -12,7 +12,14 @@ interface FormInputProps {
 
 export default function FormInput({ label, type, value, onChange, options, focusColor = 'blue', placeholder }: FormInputProps) {
 
-  const focusClasses = `focus:border-${focusColor}-500 focus:ring-2 focus:ring-${focusColor}-200`
+  const getFocusClasses = () => {
+    const focusStyles = {
+      blue: 'focus:border-blue-500 focus:ring-2 focus:ring-blue-200',
+      green: 'focus:border-green-500 focus:ring-2 focus:ring-green-200',
+      purple: 'focus:border-purple-500 focus:ring-2 focus:ring-purple-200'
+    } as const
+    return focusStyles[focusColor as keyof typeof focusStyles] || focusStyles.blue
+  }
   
 
 
@@ -35,7 +42,7 @@ export default function FormInput({ label, type, value, onChange, options, focus
               onChange={(e) => onChange(formatDateInput(e.target.value))}
               placeholder="dd-mm-yyyy"
               maxLength={10}
-              className={`w-full border-2 border-gray-200 rounded-xl p-4 pr-12 text-gray-900 ${focusClasses} transition-all duration-300`}
+              className={`w-full border-2 border-gray-200 rounded-xl p-4 pr-12 text-gray-900 ${getFocusClasses()} transition-all duration-300`}
             />
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
               <input 
@@ -63,7 +70,7 @@ export default function FormInput({ label, type, value, onChange, options, focus
           <select 
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${focusClasses} transition-all duration-300`}
+            className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${getFocusClasses()} transition-all duration-300`}
           >
             {options?.map((option) => (
               <option key={option} value={option}>{option}</option>
@@ -76,7 +83,7 @@ export default function FormInput({ label, type, value, onChange, options, focus
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder || `Enter ${label.toLowerCase()}`}
-            className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${focusClasses} transition-all duration-300`}
+            className={`w-full border-2 border-gray-200 rounded-xl p-4 text-gray-900 ${getFocusClasses()} transition-all duration-300`}
           />
         )}
       </div>

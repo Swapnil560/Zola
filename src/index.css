@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Image optimization styles */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Lazy loading placeholder */
+.image-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Optimize image rendering */
+.optimized-image {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  will-change: transform;
+}
+
 /* Hide scrollbars */
 html {
   overflow: -moz-scrollbars-none;

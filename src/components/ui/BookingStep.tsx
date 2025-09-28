@@ -19,7 +19,7 @@ interface BookingStepProps {
   premiumInsurance: { value: boolean; toggle: () => void }
   onPrevious: () => void
   onNext: () => void
-  bike: any
+  bike: { title: string; subtitle: string }
 }
 
 export default function BookingStep(props: BookingStepProps) {
@@ -27,6 +27,14 @@ export default function BookingStep(props: BookingStepProps) {
 
   const locations = ['Guwahati Airport', 'Guwahati Railway Station', 'Hotel Radisson Blu', 'Paltan Bazaar']
   const dropoffLocations = ['Hotel Radisson Blu', 'Guwahati Airport', 'Guwahati Railway Station', 'Paltan Bazaar']
+  
+  const totalPrice = 22500 + (extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)
+  
+  const methodStyles = {
+    blue: 'border-blue-200 bg-blue-50',
+    green: 'border-green-200 bg-green-50',
+    purple: 'border-purple-200 bg-purple-50'
+  } as const
 
   if (step === 1) return (
     <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
@@ -86,7 +94,7 @@ export default function BookingStep(props: BookingStepProps) {
         <div className="space-y-4">
           <div className="flex justify-between items-center py-2 border-b border-gray-100">
             <span className="text-gray-600">Vehicle</span>
-            <span className="font-semibold text-gray-900">{bike.subtitle} {bike.title}</span>
+            <span className="font-semibold text-gray-900">{bike?.subtitle} {bike?.title}</span>
           </div>
           <div className="flex justify-between items-center py-2 border-b border-gray-100">
             <span className="text-gray-600">Duration</span>
@@ -122,7 +130,7 @@ export default function BookingStep(props: BookingStepProps) {
           )}
           <div className="flex justify-between items-center py-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl px-4 mt-4">
             <span className="font-bold text-lg text-gray-900">Total Amount</span>
-            <span className="font-bold text-2xl text-orange-600">₹{22500 + (extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)}</span>
+            <span className="font-bold text-2xl text-orange-600">₹{totalPrice}</span>
           </div>
         </div>
       </div>
@@ -139,15 +147,15 @@ export default function BookingStep(props: BookingStepProps) {
       <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 mb-6">
         <h3 className="text-lg font-bold text-gray-900 mb-4">Choose Payment Method</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-          {[{name: 'Credit Card', icon: '💳', color: 'blue'}, {name: 'UPI Payment', icon: '📱', color: 'green'}, {name: 'Net Banking', icon: '🏦', color: 'purple'}].map((method, i) => (
-            <div key={i} className={`border-2 border-${method.color}-200 bg-${method.color}-50 rounded-xl p-4 text-center cursor-pointer hover:shadow-md transition-all duration-300`}>
+          {[{name: 'Credit Card', icon: '💳', color: 'blue' as const}, {name: 'UPI Payment', icon: '📱', color: 'green' as const}, {name: 'Net Banking', icon: '🏦', color: 'purple' as const}].map((method, i) => (
+            <div key={i} className={`border-2 rounded-xl p-4 text-center cursor-pointer hover:shadow-md transition-all duration-300 ${methodStyles[method.color]}`}>
               <div className="text-2xl mb-2">{method.icon}</div>
               <span className="font-semibold text-gray-900 text-sm">{method.name}</span>
             </div>
           ))}
         </div>
         <InfoCard icon="🔒" message="SSL Secured • 256-bit Encryption • Safe Checkout" bgColor="bg-green-50" textColor="text-green-700" />
-        <Button variant="primary" size="lg" className="w-full mb-4">🔒 Confirm & Pay ₹{22500 + (extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)}</Button>
+        <Button variant="primary" size="lg" className="w-full mb-4">🔒 Confirm & Pay ₹{totalPrice}</Button>
       </div>
       <div className="mt-auto flex flex-col sm:flex-row gap-4 justify-between">
         <Button variant="primary" onClick={onPrevious}>← Previous</Button>

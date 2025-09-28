@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { Tour } from '../../types'
+import OptimizedImage from './OptimizedImage'
+import StarRating from './StarRating'
 
 interface TourCardProps {
   tour: Tour
@@ -13,20 +15,27 @@ export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps)
   return (
     <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer group h-full flex flex-col">
       <div className="relative h-48 overflow-hidden">
-        <img src={tour.image} alt={tour.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+        <OptimizedImage src={tour.image} alt={tour.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy" />
         <div className="absolute top-2 left-2 bg-[#00473E] text-white px-2 py-1 rounded-full text-xs flex items-center">
           <span className="mr-1 text-white">★</span>
           <span>Most Popular</span>
         </div>
         <button 
-          onClick={onToggleLike}
-          className="absolute top-2 right-2 text-2xl transition-colors"
-          style={{
-            color: isLiked ? '#ef4444' : '#ffffff', 
-            textShadow: isLiked ? 'none' : '0 0 1px #000'
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggleLike()
           }}
+          className="absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white bg-opacity-20 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-opacity-30 z-10 active:scale-95"
         >
-          ♥
+          <svg 
+            className="w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300" 
+            fill={isLiked ? '#ef4444' : 'none'} 
+            stroke={isLiked ? '#ef4444' : '#ffffff'} 
+            strokeWidth="2" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
         </button>
       </div>
       <div className="p-4 sm:p-6 flex flex-col flex-grow">
@@ -34,11 +43,8 @@ export default function TourCard({ tour, isLiked, onToggleLike }: TourCardProps)
           {tour.duration}
         </span>
         <div className="flex items-center mb-3">
-          <div className="flex mr-2" style={{color: '#FF9937'}}>
-            {[...Array(tour.rating)].map((_, i) => (
-              <span key={i}>★</span>
-            ))}
-            <span>☆</span>
+          <div className="mr-2">
+            <StarRating initialRating={tour.rating} size="sm" />
           </div>
           <span className="text-gray-600 text-sm">{tour.reviews} reviews</span>
         </div>

@@ -19,6 +19,7 @@ import { useToggle } from '../hooks/useToggle'
 export default function Tours() {
   const { id } = useParams()
   const [openItems, setOpenItems] = useState<number[]>([])
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const mobileMenu = useToggle()
 
   const toggleDay = (day: number) => {
@@ -89,7 +90,10 @@ export default function Tours() {
                 <img src="/images/share.png" alt="Share" className="w-4 h-4 mr-1" />Share
               </Button>
               <Button variant="secondary" size="sm" className="flex items-center">
-                <img src="/images/whiteheart.png" alt="Heart" className="w-4 h-4 mr-1" />Wishlist
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <span className="hidden sm:inline">Wishlist</span>
               </Button>
             </div>
           </div>
@@ -101,9 +105,10 @@ export default function Tours() {
             <img 
               src={isKaziranga ? '/images/Kaziranga/k2.jpg' : (isTawang ? '/images/tawang/B.jpeg' : '/images/Meghalaya/main.jpeg')} 
               alt={`${tourTitle} Main`} 
-              className="rounded-md shadow-sm h-48 sm:h-64 md:h-80 lg:h-[560px] w-full lg:w-3/5 object-cover" 
+              className="rounded-md shadow-sm h-48 sm:h-64 md:h-80 lg:h-[560px] w-full lg:w-3/5 object-cover cursor-pointer hover:brightness-110 hover:scale-[1.02] transition-all duration-300" 
               loading="eager"
               fetchPriority="high"
+              onClick={() => setSelectedImage(isKaziranga ? '/images/Kaziranga/k2.jpg' : (isTawang ? '/images/tawang/B.jpeg' : '/images/Meghalaya/main.jpeg'))}
             />
             <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full lg:flex-1">
               {(isKaziranga ? [
@@ -122,7 +127,7 @@ export default function Tours() {
                 '/images/Meghalaya/bike.jpeg',
                 '/images/Meghalaya/2ppl.jpeg'
               ])).map((image, i) => (
-                <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} loading="lazy" className="rounded-md shadow-sm h-24 sm:h-32 md:h-40 lg:h-[270px] w-full object-cover" />
+                <img key={i} src={image} alt={`${tourTitle} Image ${i + 2}`} loading="lazy" className="rounded-md shadow-sm h-24 sm:h-32 md:h-40 lg:h-[270px] w-full object-cover cursor-pointer hover:brightness-110 hover:scale-[1.02] transition-all duration-300" onClick={() => setSelectedImage(image)} />
               ))}
             </div>
           </div>
@@ -154,6 +159,7 @@ export default function Tours() {
                   isOpen={openItems.includes(item.day)}
                   onToggle={() => toggleDay(item.day)}
                   image={item.image}
+                  onImageClick={setSelectedImage}
                 />
               ))}
             </div>
@@ -224,6 +230,20 @@ export default function Tours() {
       </main>
 
       <Footer />
+      
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={() => setSelectedImage(null)}>
+          <div className="relative max-w-4xl max-h-full">
+            <img src={selectedImage} alt="Full size" className="max-w-full max-h-full object-contain" />
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 text-white text-2xl bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-70 transition-all"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

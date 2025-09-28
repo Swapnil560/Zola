@@ -6,7 +6,7 @@ import { useToggle } from '../hooks/useToggle'
 
 export default function TermsConditions() {
   const mobileMenu = useToggle()
-  const [expandedSection, setExpandedSection] = useState<number | null>(null)
+  const [expandedSections, setExpandedSections] = useState<number[]>([])
 
   const termsData = [
     {
@@ -69,7 +69,11 @@ export default function TermsConditions() {
                   className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
                 >
                   <button
-                    onClick={() => setExpandedSection(expandedSection === index ? null : index)}
+                    onClick={() => setExpandedSections(prev => 
+                      prev.includes(index) 
+                        ? prev.filter(i => i !== index)
+                        : [...prev, index]
+                    )}
                     className="w-full p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors duration-200"
                   >
                     <div className="flex items-center justify-between">
@@ -77,13 +81,13 @@ export default function TermsConditions() {
                         <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full mr-3 sm:mr-4 flex-shrink-0" style={{backgroundColor: '#00473E'}}></div>
                         <h2 className="text-base sm:text-lg lg:text-xl font-bold text-black">{section.title}</h2>
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold transition-transform duration-200" style={{color: '#00473E', transform: expandedSection === index ? 'rotate(45deg)' : 'rotate(0deg)'}}>
+                      <div className="text-xl sm:text-2xl font-bold transition-transform duration-200" style={{color: '#00473E', transform: expandedSections.includes(index) ? 'rotate(45deg)' : 'rotate(0deg)'}}>
                         +
                       </div>
                     </div>
                   </button>
                   
-                  <div className={`transition-all duration-300 ease-in-out ${expandedSection === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+                  <div className={`transition-all duration-300 ease-in-out ${expandedSections.includes(index) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
                     <div className="px-4 sm:px-6 pb-4 sm:pb-6">
                       <div className="pl-4 sm:pl-8 border-l-2" style={{borderColor: '#00473E'}}>
                         <p className="text-gray-700 text-sm sm:text-base leading-relaxed">{section.text}</p>

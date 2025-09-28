@@ -7,9 +7,10 @@ interface ItineraryItemProps {
   isOpen: boolean
   onToggle: () => void
   image?: string
+  onImageClick?: (image: string) => void
 }
 
-export default function ItineraryItem({ day, title, location, distance, highlights, isOpen, onToggle, image }: ItineraryItemProps) {
+export default function ItineraryItem({ day, title, location, distance, highlights, isOpen, onToggle, image, onImageClick }: ItineraryItemProps) {
   return (
     <div className="bg-gray-100 p-3 sm:p-4 rounded-lg shadow mb-4">
       <button onClick={onToggle} className="w-full text-left flex justify-between items-center">
@@ -32,7 +33,7 @@ export default function ItineraryItem({ day, title, location, distance, highligh
       {isOpen && (
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mt-4 pt-4 border-t border-gray-300">
           <div className="w-full lg:w-2/5 h-48 sm:h-56 lg:h-48 bg-gray-200 rounded-lg overflow-hidden">
-            {image && <img src={image} alt={title} className="w-full h-full object-cover" />}
+            {image && <img src={image} alt={title} className="w-full h-full object-cover cursor-pointer hover:brightness-110 hover:scale-105 transition-all duration-300" onClick={() => onImageClick?.(image)} />}
           </div>
           <div className="w-full lg:w-3/5">
             {highlights.length > 0 && (

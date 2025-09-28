@@ -17,20 +17,20 @@ export default function AddOnItem({
   price, 
   isSelected = false, 
   onToggle, 
-  isFree = false,
-  bgColor = 'white',
-  borderColor = 'gray-200'
+  isFree = false
 }: AddOnItemProps) {
-  const containerClass = isFree 
-    ? "bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6"
-    : `border-2 rounded-xl p-6 transition-all duration-300 ${
-        isSelected 
-          ? `border-blue-300 bg-blue-50` 
-          : `border-${borderColor} bg-${bgColor} hover:border-gray-300`
-      }`
+  const getContainerClass = () => {
+    if (isFree) {
+      return "bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6"
+    }
+    if (isSelected) {
+      return "border-2 border-blue-300 bg-blue-50 rounded-xl p-6 transition-all duration-300"
+    }
+    return "border-2 border-gray-200 bg-white hover:border-gray-300 rounded-xl p-6 transition-all duration-300"
+  }
 
   return (
-    <div className={containerClass}>
+    <div className={getContainerClass()}>
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           {!isFree && (
@@ -50,7 +50,7 @@ export default function AddOnItem({
           </div>
         </div>
         <div className={`${isFree ? 'bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm' : 'text-blue-600 font-bold text-lg'}`}>
-          {isFree ? 'FREE' : `+₹${price}`}
+          {isFree ? 'FREE' : `+₹${price ?? 0}`}
         </div>
       </div>
     </div>

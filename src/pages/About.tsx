@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Header from '../components/ui/Header'
 import Footer from '../components/ui/Footer'
 import BackButton from '../components/ui/BackButton'
@@ -7,6 +8,7 @@ import { aboutFAQCategories } from '../data/faqs'
 
 export default function About() {
   const mobileMenu = useToggle()
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   return (
     <div className="min-h-screen bg-white">
@@ -45,7 +47,8 @@ export default function About() {
                 <img 
                   src="/images/about/about road.png" 
                   alt="Road through forest" 
-                  className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg shadow-lg"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg shadow-lg cursor-pointer hover:brightness-110 hover:scale-[1.02] transition-all duration-300"
+                  onClick={() => setSelectedImage('/images/about/about road.png')}
                 />
               </div>
             </div>
@@ -66,7 +69,8 @@ export default function About() {
                   <img 
                     src="/images/about/about car.png" 
                     alt="Mission" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover cursor-pointer hover:brightness-110 hover:scale-105 transition-all duration-300"
+                    onClick={() => setSelectedImage('/images/about/about car.png')}
                   />
                 </div>
                 <p className="text-black text-sm sm:text-base">
@@ -79,7 +83,8 @@ export default function About() {
                   <img 
                     src="/images/about/about 3.png" 
                     alt="Vision" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover cursor-pointer hover:brightness-110 hover:scale-105 transition-all duration-300"
+                    onClick={() => setSelectedImage('/images/about/about 3.png')}
                   />
                 </div>
                 <p className="text-black text-sm sm:text-base">
@@ -92,7 +97,8 @@ export default function About() {
                   <img 
                     src="/images/about/Screenshot 2025-09-26 181723.png" 
                     alt="Values" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover cursor-pointer hover:brightness-110 hover:scale-105 transition-all duration-300"
+                    onClick={() => setSelectedImage('/images/about/Screenshot 2025-09-26 181723.png')}
                   />
                 </div>
                 <p className="text-black text-sm sm:text-base">
@@ -112,6 +118,20 @@ export default function About() {
       </main>
 
       <Footer />
+      
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setSelectedImage(null)}>
+          <div className="relative w-full max-w-4xl max-h-full">
+            <img src={selectedImage} alt="Full size" className="w-full h-auto max-h-[90vh] object-contain rounded-lg" />
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white text-xl sm:text-2xl bg-black bg-opacity-50 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center hover:bg-opacity-70 transition-all"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

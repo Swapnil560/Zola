@@ -71,7 +71,7 @@ export default function BikeDetails() {
         </section>
 
         <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-12 lg:mt-8 bg-gray-50">
-          <StepIndicator currentStep={currentStep} />
+          <StepIndicator currentStep={currentStep} onStepClick={setCurrentStep} />
           <div className="bg-gray-100 rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-200">
             <BookingStep 
               step={currentStep}
@@ -85,8 +85,34 @@ export default function BikeDetails() {
               setDropoffLocation={setDropoffLocation}
               extraHelmet={extraHelmet}
               premiumInsurance={premiumInsurance}
-              onPrevious={() => setCurrentStep(Math.max(1, currentStep - 1))}
-              onNext={() => setCurrentStep(currentStep + 1)}
+              onPrevious={() => {
+                const buttonRect = document.querySelector('[data-nav-button]')?.getBoundingClientRect()
+                setCurrentStep(Math.max(1, currentStep - 1))
+                setTimeout(() => {
+                  if (buttonRect) {
+                    const newButton = document.querySelector('[data-nav-button]')
+                    if (newButton) {
+                      const newRect = newButton.getBoundingClientRect()
+                      const scrollDiff = newRect.top - buttonRect.top
+                      window.scrollBy(0, scrollDiff)
+                    }
+                  }
+                }, 0)
+              }}
+              onNext={() => {
+                const buttonRect = document.querySelector('[data-nav-button]')?.getBoundingClientRect()
+                setCurrentStep(currentStep + 1)
+                setTimeout(() => {
+                  if (buttonRect) {
+                    const newButton = document.querySelector('[data-nav-button]')
+                    if (newButton) {
+                      const newRect = newButton.getBoundingClientRect()
+                      const scrollDiff = newRect.top - buttonRect.top
+                      window.scrollBy(0, scrollDiff)
+                    }
+                  }
+                }, 0)
+              }}
               bike={bike}
             />
           </div>

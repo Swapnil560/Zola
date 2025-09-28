@@ -36,7 +36,7 @@ export default function HeroSection({ isMobileMenuOpen }: HeroSectionProps) {
 
 
   return (
-    <section className="relative h-[750px] bg-cover bg-center pt-16 mx-4 sm:mx-6 lg:mx-8 rounded-lg overflow-hidden" style={{backgroundImage: 'url("/images/Hero.png")'}}>
+    <section id="hero" className="relative h-[750px] bg-cover bg-center pt-16 mx-4 sm:mx-6 lg:mx-8 rounded-lg overflow-hidden" style={{backgroundImage: 'url("/images/Hero.png")'}}>
       <div className="absolute inset-0 flex items-start justify-start" style={{paddingTop: isMobileMenuOpen ? '180px' : '80px'}}>
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-lg">

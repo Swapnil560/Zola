@@ -52,13 +52,24 @@ export default function Header({
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }, 100)
   }
+
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
+    }
+  }
   return (
     <header className="fixed top-0 w-full bg-gray-100 shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center -ml-2">
+          <div className="flex items-center -ml-2 cursor-pointer" onClick={handleLogoClick}>
             <img src={logo} alt={`${title} Logo`} className="w-24 h-24 object-contain mr-1 -ml-2" />
-            <span className="text-sm sm:text-lg md:text-xl font-bold text-gray-800">{title}</span>
+            <span className="text-sm sm:text-lg md:text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors">{title}</span>
           </div>
           <nav className="hidden sm:flex space-x-1 md:space-x-4 lg:space-x-8 text-xs md:text-base">
             {navItems.map((item, index) => (

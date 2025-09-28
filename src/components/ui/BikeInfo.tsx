@@ -1,5 +1,6 @@
 import Button from './Button'
 import FeatureCard from './FeatureCard'
+import StarRating from './StarRating'
 
 interface BikeInfoProps {
   bike: any
@@ -18,8 +19,8 @@ export default function BikeInfo({ bike }: BikeInfoProps) {
       <p className="text-gray-600 mb-6">Stylish, reliable city ride with vintage charm</p>
       
       <div className="flex items-center mb-6">
-        <div className="flex text-yellow-400 mr-2">
-          {[...Array(5)].map((_, i) => <span key={i}>★</span>)}
+        <div className="mr-2">
+          <StarRating initialRating={bike.rating || 5} size="lg" />
         </div>
         <span className="text-gray-600">(124 reviews)</span>
       </div>

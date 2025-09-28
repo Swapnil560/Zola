@@ -27,6 +27,7 @@ export default function NavigationButtons({
         onClick={onNext}
         className="px-8 py-3 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
         style={{backgroundColor: '#00473E'}}
+        data-nav-button
       >
         {nextText}
       </button>
