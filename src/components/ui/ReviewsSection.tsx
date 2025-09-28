@@ -49,6 +49,12 @@ export default function ReviewsSection({
       review: dynamicReviews[index].review, 
       index 
     })
+    setTimeout(() => {
+      const addReviewSection = document.querySelector('.add-review-section')
+      if (addReviewSection) {
+        addReviewSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    }, 100)
   }
 
   const handleSaveEdit = (updatedReview: { name: string; review: string; rating: number }) => {
@@ -129,11 +135,13 @@ export default function ReviewsSection({
             </button>
           </div>
         )}
-        <AddReview 
-          onAddReview={editingReview ? handleSaveEdit : handleAddReview} 
-          editingReview={editingReview}
-          onCancelEdit={handleCancelEdit}
-        />
+        <div className="add-review-section">
+          <AddReview 
+            onAddReview={editingReview ? handleSaveEdit : handleAddReview} 
+            editingReview={editingReview}
+            onCancelEdit={handleCancelEdit}
+          />
+        </div>
       </div>
     </section>
   )

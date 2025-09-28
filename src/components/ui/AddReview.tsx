@@ -18,7 +18,12 @@ export default function AddReview({ onAddReview, editingReview, onCancelEdit }: 
     if (editingReview) {
       setName(editingReview.name)
       setReviewText(editingReview.review)
+      setRating(5)
       setIsOpen(true)
+    } else {
+      setName('')
+      setReviewText('')
+      setRating(5)
     }
   }, [editingReview])
 
@@ -54,7 +59,9 @@ export default function AddReview({ onAddReview, editingReview, onCancelEdit }: 
   }
 
   return (
-    <div className="mt-8 bg-white p-4 sm:p-6 rounded-lg shadow-md">
+    <div className={`mt-8 p-4 sm:p-6 rounded-lg shadow-md ${
+      editingReview ? 'bg-blue-50 border-2 border-blue-300' : 'bg-white'
+    }`}>
       <h3 className="text-lg sm:text-xl font-bold mb-4">
         {editingReview ? 'Edit Your Review' : 'Share Your Experience'}
       </h3>
