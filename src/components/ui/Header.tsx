@@ -99,7 +99,7 @@ export default function Header({
           </button>
           
           <button className="hidden sm:flex text-white px-1 sm:px-2 md:px-6 py-1 sm:py-2 rounded-lg sm:rounded-xl items-center hover:scale-105 hover:shadow-lg transition-all duration-300 text-xs sm:text-sm md:text-base whitespace-nowrap font-medium" style={{backgroundColor: '#00473E'}}>
-            <img src="/images/tel.png" alt="Phone" className="w-4 h-4 mr-1" />
+            <img src="/images/Phone.png" alt="Phone" className="w-4 h-4 mr-1" />
             <span className="hidden sm:inline">{contactText}</span>
           </button>
         </div>
@@ -125,7 +125,7 @@ export default function Header({
                 )
               ))}
               <button className="text-white px-4 py-2 rounded-lg flex items-center justify-center" style={{backgroundColor: '#00473E'}}>
-                <img src="/images/tel.png" alt="Phone" className="w-4 h-4 mr-2" />
+                <img src="/images/Phone.png" alt="Phone" className="w-4 h-4 mr-2" />
                 {contactText}
               </button>
             </nav>
