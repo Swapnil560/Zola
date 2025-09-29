@@ -25,7 +25,7 @@ export default function BikeInfo({ bike }: BikeInfoProps) {
         <span className="text-gray-600">(124 reviews)</span>
       </div>
 
-      <div className="text-4xl font-bold mb-2" style={{color: '#2D2D2D'}}>₹4,500 / per day</div>
+      <div className="text-4xl font-bold mb-2" style={{color: '#2D2D2D'}}>₹{bike.price?.toLocaleString() || '4,500'} / per day</div>
       <p className="text-gray-600 mb-6">(Fuel cost included in price)</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 flex-grow">

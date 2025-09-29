@@ -25,7 +25,7 @@ export default function VehiclesSection({ showAllBikes, bikeLikes, onToggleShowA
           <p className="text-gray-600 text-center mb-12 hover:text-gray-500 transition-colors">Select how you want to travel today</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {(showAllBikes ? popularBikes : popularBikes.slice(0, 3)).map((bike) => (
+          {(showAllBikes ? popularBikes.filter(bike => bike.id <= 5) : popularBikes.filter(bike => bike.id <= 5).slice(0, 3)).map((bike) => (
             <VehicleCard 
               key={bike.id}
               vehicle={bike}

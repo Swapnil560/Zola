@@ -9,6 +9,10 @@ import About from './pages/About.tsx'
 import TermsConditions from './pages/TermsConditions.tsx'
 import Services from './pages/Services.tsx'
 import VehicleList from './pages/VehicleList.tsx'
+import BikeList from './pages/BikeList.tsx'
+import CabList from './pages/CabList.tsx'
+import TempoList from './pages/TempoList.tsx'
+import CarList from './pages/CarList.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +27,10 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/terms-conditions" element={<TermsConditions />} />
         <Route path="/services" element={<Services />} />
         <Route path="/vehiclelist" element={<VehicleList />} />
+        <Route path="/bikes" element={<BikeList />} />
+        <Route path="/cabs" element={<CabList />} />
+        <Route path="/tempo" element={<TempoList />} />
+        <Route path="/cars" element={<CarList />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
