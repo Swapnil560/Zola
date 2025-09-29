@@ -13,7 +13,7 @@ export const popularBikes: Vehicle[] = [
   },
   {
     id: 2,
-    title: 'Scooty',
+    title: 'Activa',
     subtitle: '',
     image: '/images/Scooter/mainScooty.jpeg',
     rating: 4,
@@ -23,7 +23,7 @@ export const popularBikes: Vehicle[] = [
   },
   {
     id: 3,
-    title: 'Cabs',
+    title: 'Honda',
     subtitle: '',
     image: '/images/cabs/main.jpeg',
     rating: 4,
@@ -35,7 +35,7 @@ export const popularBikes: Vehicle[] = [
     id: 4,
     title: 'Himalayan',
     subtitle: 'Royal Enfield',
-    image: '/images/gixxer.jpg',
+    image: '/images/himalayan.webp',
     rating: 5,
     reviews: 89,
     price: 5500,
