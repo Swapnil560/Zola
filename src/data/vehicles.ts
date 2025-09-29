@@ -43,7 +43,7 @@ export const popularBikes: Vehicle[] = [
   },
   {
     id: 5,
-    title: 'Tempo',
+    title: 'Force Traveller',
     subtitle: '',
     image: '/images/tempo/main.jpeg',
     rating: 4,

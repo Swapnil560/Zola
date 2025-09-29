@@ -63,10 +63,10 @@ export default function BikeDetails() {
         <section className="max-w-6xl mx-auto p-4 sm:p-6 mt-8 bg-gray-50">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">Specifications</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <SpecCard icon="/images/bp.png" value="54 kmpl" label="Mileage" />
-            <SpecCard icon="/images/bppl.png" value="2 persons" label="Seating" />
-            <SpecCard icon="/images/br.png" value="125cc" label="Engine" />
-            <SpecCard icon="/images/bc.png" value="85 km/h" label="Top Speed" />
+            <SpecCard icon="/images/bp.png" value={bike.id === 1 || bike.id === 2 || bike.id === 4 ? "35 kmpl" : bike.id === 3 || bike.id === 5 ? "25 kmpl" : "54 kmpl"} label="Mileage" />
+            <SpecCard icon="/images/bppl.png" value={bike.id === 3 ? "5 persons" : bike.id === 5 ? "12 persons" : "2 persons"} label="Seating" />
+            <SpecCard icon="/images/br.png" value={bike.id === 1 ? "350cc" : bike.id === 3 ? "1498cc" : bike.id === 4 ? "452cc" : bike.id === 5 ? "2596cc" : "125cc"} label="Engine" />
+            <SpecCard icon="/images/bc.png" value={bike.id === 1 || bike.id === 3 ? "110 km/h" : bike.id === 4 ? "165 km/h" : bike.id === 5 ? "80 km/h" : "85 km/h"} label="Top Speed" />
           </div>
         </section>
 
