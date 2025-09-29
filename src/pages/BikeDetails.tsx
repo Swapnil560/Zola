@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import Header from '../components/ui/Header'
 import Footer from '../components/ui/Footer'
 import BackButton from '../components/ui/BackButton'
@@ -18,7 +18,11 @@ import { useToggle } from '../hooks/useToggle'
 
 export default function BikeDetails() {
   const { id } = useParams()
+  const location = useLocation()
   const mobileMenu = useToggle()
+  
+  // Check if coming from vehiclelist
+  const backPath = location.state?.from === 'vehiclelist' ? '/vehiclelist' : '/'
   
   const bike = popularBikes.find(b => b.id === parseInt(id || '1')) || popularBikes[0]
   const [currentStep, setCurrentStep] = useState(1)
@@ -50,7 +54,7 @@ export default function BikeDetails() {
     <div className="min-h-screen bg-gray-50">
       <Header isMobileMenuOpen={mobileMenu.value} setIsMobileMenuOpen={mobileMenu.toggle} />
       
-      <BackButton />
+      <BackButton to={backPath} />
 
       <main style={{paddingTop: '16px'}}>
         <section className="max-w-6xl mx-auto p-4 sm:p-6 bg-gray-50">

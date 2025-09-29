@@ -7,12 +7,13 @@ interface VehicleCardProps {
   isLiked: boolean
   onToggleLike: () => void
   onViewDetails: () => void
+  onImageClick?: () => void
 }
 
-export default function VehicleCard({ vehicle, isLiked, onToggleLike, onViewDetails }: VehicleCardProps) {
+export default function VehicleCard({ vehicle, isLiked, onToggleLike, onViewDetails, onImageClick }: VehicleCardProps) {
   return (
     <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
-      <div className="relative h-48">
+      <div className="relative h-48" onClick={onImageClick}>
         <OptimizedImage src={vehicle.image} alt={vehicle.title} className="w-full h-full object-cover" loading="lazy" />
         <button 
           onClick={(e) => {

@@ -72,9 +72,12 @@ export default function Header({
             <span className="text-sm sm:text-lg md:text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors">{title}</span>
           </div>
           <nav className="hidden sm:flex space-x-1 md:space-x-4 lg:space-x-8 text-xs md:text-base">
-            {navItems.map((item, index) => (
-              item.to ? (
-                <button key={index} onClick={() => handleNavClick(item.to!)} className="text-black font-bold hover:text-gray-700">
+            {navItems.map((item, index) => {
+              const isActive = item.to && location.pathname === item.to && item.to !== '/'
+              const activeClass = isActive ? "text-gray-500" : "text-black hover:text-gray-700"
+              
+              return item.to ? (
+                <button key={index} onClick={() => handleNavClick(item.to!)} className={`font-bold ${activeClass}`}>
                   {item.label}
                 </button>
               ) : item.label === 'Tours' ? (
@@ -86,7 +89,7 @@ export default function Header({
                   {item.label}
                 </a>
               )
-            ))}
+            })}
           </nav>
           
           <button 
@@ -109,9 +112,12 @@ export default function Header({
         <div className="sm:hidden bg-gray-100 border-t border-gray-200 relative z-50">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
-              {navItems.map((item, index) => (
-                item.to ? (
-                  <button key={index} onClick={() => handleNavClick(item.to!)} className="text-black font-bold hover:text-gray-700">
+              {navItems.map((item, index) => {
+                const isActive = item.to && location.pathname === item.to && item.to !== '/'
+                const activeClass = isActive ? "text-gray-500" : "text-black hover:text-gray-700"
+                
+                return item.to ? (
+                  <button key={index} onClick={() => handleNavClick(item.to!)} className={`font-bold ${activeClass}`}>
                     {item.label}
                   </button>
                 ) : item.label === 'Tours' ? (
@@ -123,7 +129,7 @@ export default function Header({
                     {item.label}
                   </a>
                 )
-              ))}
+              })}
               <button className="text-white px-4 py-2 rounded-lg flex items-center justify-center" style={{backgroundColor: '#00473E'}}>
                 <img src="/images/Phone.png" alt="Phone" className="w-4 h-4 mr-2" />
                 {contactText}
