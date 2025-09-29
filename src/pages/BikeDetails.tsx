@@ -29,7 +29,7 @@ export default function BikeDetails() {
       case 'cab': return '/cabs'
       case 'tempo': return '/tempo'
       case 'car': return '/cars'
-      case 'vehiclelist': return '/vehiclelist'
+      case 'services': return '/services'
       default: return '/'
     }
   }
