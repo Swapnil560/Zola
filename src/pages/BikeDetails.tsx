@@ -144,7 +144,7 @@ export default function BikeDetails() {
                   }
                 }, 0)
               }}
-              bike={bike}
+              bike={{ id: bike.id, title: bike.title, subtitle: bike.subtitle, price: bike.price }}
             />
           </div>
         </section>

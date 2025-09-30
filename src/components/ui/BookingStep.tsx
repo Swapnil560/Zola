@@ -19,7 +19,7 @@ interface BookingStepProps {
   premiumInsurance: { value: boolean; toggle: () => void }
   onPrevious: () => void
   onNext: () => void
-  bike: { title: string; subtitle: string }
+  bike: { id: number; title: string; subtitle: string; price: number }
 }
 
 export default function BookingStep(props: BookingStepProps) {
@@ -28,7 +28,14 @@ export default function BookingStep(props: BookingStepProps) {
   const locations = ['Guwahati Airport', 'Guwahati Railway Station', 'Hotel Radisson Blu', 'Paltan Bazaar']
   const dropoffLocations = ['Hotel Radisson Blu', 'Guwahati Airport', 'Guwahati Railway Station', 'Paltan Bazaar']
   
-  const totalPrice = 22500 + (extraHelmet.value ? 50 : 0) + (premiumInsurance.value ? 100 : 0)
+  const isBike = [1, 2, 4, 6].includes(bike.id)
+  const isCar = [3, 7, 8].includes(bike.id)
+  const isTempo = bike.id === 5
+  const isSelfDrive = [11, 12, 13].includes(bike.id)
+  
+  const days = 5
+  const basePrice = bike.price * days
+  const totalPrice = basePrice + (extraHelmet.value && isBike ? 50 : 0) + (premiumInsurance.value ? 100 : 0)
   
   const methodStyles = {
     blue: 'border-blue-200 bg-blue-50',
@@ -43,7 +50,7 @@ export default function BookingStep(props: BookingStepProps) {
         <FormInput label="Pick-up Date" type="date" value={pickupDate} onChange={setPickupDate} focusColor="blue" />
         <FormInput label="Drop-off Date" type="date" value={dropoffDate} onChange={setDropoffDate} focusColor="blue" />
       </div>
-      <InfoCard icon="ℹ️" message="Total Duration: 5 days • Daily Rate: ₹4,500" bgColor="bg-blue-50" textColor="text-blue-800" />
+      <InfoCard icon="ℹ️" message={`Total Duration: ${days} days • Daily Rate: ₹${bike.price}`} bgColor="bg-blue-50" textColor="text-blue-800" />
       <div className="mt-auto">
         <NavigationButtons onPrevious={onPrevious} onNext={onNext} previousDisabled={true} nextText="Continue to Locations →" />
       </div>
@@ -68,8 +75,9 @@ export default function BookingStep(props: BookingStepProps) {
     <div className="max-w-2xl mx-auto min-h-[500px] flex flex-col">
       <StepHeader icon="🛡️" title="Select Add-ons" description="Enhance your rental experience" gradientFrom="purple" gradientTo="pink" />
       <div className="space-y-4 mb-8">
-        <AddOnItem icon="🛡️" title="Safety Helmet" description="Premium quality helmet included" isFree={true} />
-        <AddOnItem icon="🛡️" title="Extra Helmet" description="Additional helmet for passenger" price={50} isSelected={extraHelmet.value} onToggle={extraHelmet.toggle} />
+        {isBike && <AddOnItem icon="🛡️" title="Safety Helmet" description="Premium quality helmet included" isFree={true} />}
+        {isBike && <AddOnItem icon="🛡️" title="Extra Helmet" description="Additional helmet for passenger" price={50} isSelected={extraHelmet.value} onToggle={extraHelmet.toggle} />}
+        {(isCar || isTempo || isSelfDrive) && <AddOnItem icon="📱" title="GPS Upgrade" description="Premium GPS navigation system" price={50} isSelected={extraHelmet.value} onToggle={extraHelmet.toggle} />}
         <AddOnItem icon="📜" title="Premium Insurance" description="Comprehensive coverage & protection" price={100} isSelected={premiumInsurance.value} onToggle={premiumInsurance.toggle} />
       </div>
       <div className="bg-purple-50 rounded-xl p-4 mb-6">
@@ -109,16 +117,22 @@ export default function BookingStep(props: BookingStepProps) {
             <span className="font-semibold text-gray-900">{dropoffLocation}</span>
           </div>
           <div className="flex justify-between items-center py-2 border-b border-gray-100">
-            <span className="text-gray-600">Base Price (5 days)</span>
-            <span className="font-semibold text-gray-900">₹22,500</span>
+            <span className="text-gray-600">Base Price ({days} days)</span>
+            <span className="font-semibold text-gray-900">₹{basePrice.toLocaleString()}</span>
           </div>
           <div className="flex justify-between items-center py-2 border-b border-gray-100">
-            <span className="text-gray-600">Fuel</span>
-            <span className="font-semibold text-green-600">Included</span>
+            <span className="text-gray-600">{isSelfDrive ? 'Fuel' : 'Driver & Fuel'}</span>
+            <span className="font-semibold text-green-600">{isSelfDrive ? 'Extra' : 'Included'}</span>
           </div>
-          {extraHelmet.value && (
+          {extraHelmet.value && isBike && (
             <div className="flex justify-between items-center py-2 border-b border-gray-100">
               <span className="text-gray-600">Extra Helmet</span>
+              <span className="font-semibold text-blue-600">+₹50</span>
+            </div>
+          )}
+          {extraHelmet.value && !isBike && (
+            <div className="flex justify-between items-center py-2 border-b border-gray-100">
+              <span className="text-gray-600">GPS Upgrade</span>
               <span className="font-semibold text-blue-600">+₹50</span>
             </div>
           )}
